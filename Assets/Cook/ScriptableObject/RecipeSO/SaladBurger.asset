@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 300f6f6266ea6cc4399f243bd7adcd14, type: 3}
+  m_Name: SaladBurger
+  m_EditorClassIdentifier: 
+  KitchenObjectSOList:
+  - {fileID: 11400000, guid: 43fc009d4df736945b07661c4dae05bb, type: 2}
+  - {fileID: 11400000, guid: c18dd804cb44079409d22a6f08a89cb7, type: 2}
+  - {fileID: 11400000, guid: 7e136a50c50355f4b80d9604178be94e, type: 2}
+  Name: SaladBurger
