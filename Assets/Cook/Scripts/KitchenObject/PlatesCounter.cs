@@ -20,10 +20,10 @@ namespace Cook
 
 		private void Start()
 		{
-			StartCoroutine(SpawnPlates());
+			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
-		IEnumerator SpawnPlates()
+		IEnumerator SpawnPlatesCoroutine()
 		{
 			while (_spawnPlateTimer < _spawnPlateTimerMax)
 			{

@@ -17,14 +17,8 @@ namespace Cook
 
 		private void Player_OnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedArgs e)
 		{
-			if (e.SelectedCounter == _clearCounter)
-			{
-				Show();
-			}
-			else
-			{
-				Hide();
-			}
+			if (e.SelectedCounter == _clearCounter) Show();
+			else Hide();
 		}
 
 		private void Show()

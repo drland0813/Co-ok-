@@ -26,17 +26,17 @@ namespace Cook
 		{
 			base.Awake();
 			_soundDict = new Dictionary<SoundType, AudioClip[]>()
-		{
-			{ SoundType.DeliveryFail, _audioClipRefSO.DeliveryFail},
-			{ SoundType.DeliverySuccess, _audioClipRefSO.DeliverySuccess},
-			{ SoundType.FootStep, _audioClipRefSO.Footstep},
-			{ SoundType.ObjectDrop, _audioClipRefSO.ObjectDrop},
-			{ SoundType.ObjectPickup, _audioClipRefSO.ObjectPickup},
-			{ SoundType.Chop, _audioClipRefSO.Chop},
-			{ SoundType.StoveSizzle, _audioClipRefSO.StoveSizzle},
-			{ SoundType.Trash, _audioClipRefSO.Trash},
-			{ SoundType.Warning, _audioClipRefSO.Warning},
-		};
+			{
+				{ SoundType.DeliveryFail, _audioClipRefSO.DeliveryFail},
+				{ SoundType.DeliverySuccess, _audioClipRefSO.DeliverySuccess},
+				{ SoundType.FootStep, _audioClipRefSO.Footstep},
+				{ SoundType.ObjectDrop, _audioClipRefSO.ObjectDrop},
+				{ SoundType.ObjectPickup, _audioClipRefSO.ObjectPickup},
+				{ SoundType.Chop, _audioClipRefSO.Chop},
+				{ SoundType.StoveSizzle, _audioClipRefSO.StoveSizzle},
+				{ SoundType.Trash, _audioClipRefSO.Trash},
+				{ SoundType.Warning, _audioClipRefSO.Warning},
+			};
 		}
 
 		public void PlaySound(SoundType type, Transform point)

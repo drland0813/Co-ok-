@@ -17,14 +17,8 @@ namespace Cook
 		private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
 		{
 			bool playSound = e.State == StoveCounter.State.Frying || e.State == StoveCounter.State.Fried;
-			if (playSound)
-			{
-				_audioSource.Play();
-			}
-			else
-			{
-				_audioSource.Pause();
-			}
+			if (playSound) _audioSource.Play();
+			else _audioSource.Pause();
 		}
 	}
 }

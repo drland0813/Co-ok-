@@ -38,10 +38,10 @@ namespace Cook
 		private void Start()
 		{
 			_state = State.Idle;
-			StartCoroutine(OnWork());
+			StartCoroutine(WorkingCoroutine());
 		}
 
-		IEnumerator OnWork()
+		IEnumerator WorkingCoroutine()
 		{
 			while (!GameManager.Instance.IsGameOver())
 			{

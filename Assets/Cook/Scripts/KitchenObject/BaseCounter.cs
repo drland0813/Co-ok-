@@ -4,19 +4,15 @@ using UnityEngine;
 
 namespace Cook
 {
-	public class BaseCounter : MonoBehaviour, IKitchenObjectParent
+	public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
 	{
 		[SerializeField] private Transform _counterTopPoint;
 
 		protected KitchenObject _currentKitchenObject;
 
-		public virtual void Interact(PlayerController player)
-		{
-		}
+		public abstract void Interact(PlayerController player);
 
-		public virtual void InteractAlternate(PlayerController player)
-		{
-		}
+		public virtual void InteractAlternate(PlayerController player) { }
 
 		public Transform GetKitchenObjectFollowTransform()
 		{

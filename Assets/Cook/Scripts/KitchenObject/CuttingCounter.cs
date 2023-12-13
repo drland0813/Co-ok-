@@ -58,32 +58,31 @@ namespace Cook
 
 		public override void InteractAlternate(PlayerController player)
 		{
-			if (HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO()))
+			bool canInteractAlternate = HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO());
+			if (!canInteractAlternate) return;
+
+			_cuttingProgress++;
+			OnCut?.Invoke(this, EventArgs.Empty);
+			SoundManager.Instance.PlaySound(SoundType.Chop, transform);
+			CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+			OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 			{
-				_cuttingProgress++;
-				OnCut?.Invoke(this, EventArgs.Empty);
-				SoundManager.Instance.PlaySound(SoundType.Chop, transform);
-				CuttingRecipeSO cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-				OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-				{
-					ProgessNomarlized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
-				});
+				ProgessNomarlized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
+			});
 
-				if (_cuttingProgress >= cuttingRecipeSO.CuttingProgressMax)
-				{
-					KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
-					if (!outputKitchenObjectSO) return;
+			if (_cuttingProgress >= cuttingRecipeSO.CuttingProgressMax)
+			{
+				KitchenObjectSO outputKitchenObjectSO = GetOutputForInput(GetKitchenObject().GetKitchenObjectSO());
+				if (!outputKitchenObjectSO) return;
 
-					GetKitchenObject().DestroySelf();
-					KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
-				}
+				GetKitchenObject().DestroySelf();
+				KitchenObject.SpawnKitchenObject(outputKitchenObjectSO, this);
 			}
 		}
 
 		private bool HasRecipeWithInput(KitchenObjectSO kitchenObjectSO)
 		{
 			return GetCuttingRecipeSOWithInput(kitchenObjectSO) != null;
-
 		}
 
 		private KitchenObjectSO GetOutputForInput(KitchenObjectSO inputKitchenObjectSO)

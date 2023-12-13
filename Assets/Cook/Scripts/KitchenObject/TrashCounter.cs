@@ -8,12 +8,10 @@ namespace Cook
 	{
 		public override void Interact(PlayerController player)
 		{
-			if (player.HasKitchenObject())
-			{
-				player.GetKitchenObject().DestroySelf();
+			if (!player.HasKitchenObject()) return;
 
-				SoundManager.Instance.PlaySound(SoundType.Trash, transform);
-			}
+			player.GetKitchenObject().DestroySelf();
+			SoundManager.Instance.PlaySound(SoundType.Trash, transform);
 		}
 	}
 }

@@ -8,13 +8,12 @@ namespace Cook
 	{
 		public override void Interact(PlayerController player)
 		{
-			if (player.HasKitchenObject())
+			if (player.HasKitchenObject()) return;
+
+			if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
 			{
-				if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
-				{
-					DeliveryManager.Instance.DeliveryRecipe(plateKitchenObject);
-					player.GetKitchenObject().DestroySelf();
-				}
+				DeliveryManager.Instance.DeliveryRecipe(plateKitchenObject);
+				player.GetKitchenObject().DestroySelf();
 			}
 		}
 	}

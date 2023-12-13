@@ -26,10 +26,10 @@ namespace Cook
 
 		private void Start()
 		{
-			StartCoroutine(StartRecievingOrders());
+			StartCoroutine(StartRecievingOrdersCoroutine());
 		}
 
-		IEnumerator StartRecievingOrders()
+		IEnumerator StartRecievingOrdersCoroutine()
 		{
 			while (_spawnRecipeTimer > 0)
 			{

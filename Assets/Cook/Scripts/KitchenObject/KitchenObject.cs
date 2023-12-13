@@ -22,10 +22,8 @@ namespace Cook
 
 		public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
 		{
-			if (_kitchenObjectParent != null)
-			{
-				_kitchenObjectParent.ClearKitchenObject();
-			}
+			if (_kitchenObjectParent != null) _kitchenObjectParent.ClearKitchenObject();
+			
 			_kitchenObjectParent = kitchenObjectParent;
 			_kitchenObjectParent.SetKitchenObject(this);
 
