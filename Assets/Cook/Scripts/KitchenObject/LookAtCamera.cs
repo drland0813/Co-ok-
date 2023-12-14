@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class LookAtCamera : MonoBehaviour
 	{
-		public enum Mode
+		private enum Mode
 		{
 			LootAt,
 			LookAtInverted,
@@ -15,25 +16,33 @@ namespace Cook
 		}
 
 		[SerializeField] private Mode _mode;
+		private Transform _mainCamera;
+
+		private void Awake()
+		{
+			if (Camera.main != null) _mainCamera = Camera.main.transform;
+		}
 
 		private void LateUpdate()
 		{
 			switch (_mode)
 			{
 				case Mode.LootAt:
-					transform.LookAt(Camera.main.transform);
+					transform.LookAt(_mainCamera.transform);
 					break;
 				case Mode.LookAtInverted:
-					Vector3 dirFromCamera = transform.position - Camera.main.transform.position;
-					transform.LookAt(transform.position + dirFromCamera);
+					var currentTransform = transform.position;
+					var dirFromCamera = currentTransform - _mainCamera.position;
+					transform.LookAt(currentTransform + dirFromCamera);
 					break;
 				case Mode.CameraForward:
-					transform.forward = Camera.main.transform.forward;
+					transform.forward = _mainCamera.forward;
 					break;
 				case Mode.CameraForwardInverted:
-					transform.forward = -Camera.main.transform.forward;
+					transform.forward = -_mainCamera.forward;
 					break;
-
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 	}

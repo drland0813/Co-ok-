@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class ClockCountDownUI : MonoBehaviour
 	{
@@ -25,21 +25,20 @@ namespace Cook
 			StartCoroutine(OnStart());
 		}
 
-		IEnumerator OnStart()
+		private IEnumerator OnStart()
 		{
 			while (!GameManager.Instance.IsGameOver())
 			{
 				if (GameManager.Instance.IsGamePlaying())
 				{
-					var timeRemain = GameManager.Instance.GetGamePlayingTimerNomarlized();
-					if (timeRemain < 0.5f && timeRemain > 0.25f)
+					var timeRemain = GameManager.Instance.GetGamePlayingTimerNormalized();
+					_clockColor = timeRemain switch
 					{
-						_clockColor = _fasterTimeColor;
-					}
-					if (timeRemain < 0.25f)
-					{
-						_clockColor = _dangerTimeColor;
-					}
+						< 0.5f and > 0.25f => _fasterTimeColor,
+						< 0.25f => _dangerTimeColor,
+						_ => _clockColor
+					};
+
 					_clockColor.a = 1f;
 					_clockImg.color = _clockColor;
 					_clockImg.fillAmount = timeRemain;

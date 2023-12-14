@@ -1,9 +1,8 @@
 using System;
-using System.Collections;
 using TMPro;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class CountDownTimerUI : MonoBehaviour
 	{
@@ -21,14 +20,9 @@ namespace Cook
 
 		private void GameManager_OnStateChanged(object sender, EventArgs e)
 		{
-			if (GameManager.Instance.IsCountDownToStartActive())
-			{
-				Show();
-			}
-			else
-			{
-				Hide();
-			}
+			var isCountDownToStartActive = GameManager.Instance.IsCountDownToStartActive();
+			if (isCountDownToStartActive) Show();
+			else Hide();
 		}
 
 		private void Show()

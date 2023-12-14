@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class PlatesCounter : BaseCounter
 	{
@@ -23,7 +23,7 @@ namespace Cook
 			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
-		IEnumerator SpawnPlatesCoroutine()
+		private IEnumerator SpawnPlatesCoroutine()
 		{
 			while (_spawnPlateTimer < _spawnPlateTimerMax)
 			{
@@ -45,28 +45,23 @@ namespace Cook
 		{
 			if (!player.HasKitchenObject())
 			{
-				if (_plateSpawnedAmount > 0)
-				{
-					_plateSpawnedAmount--;
-					KitchenObject.SpawnKitchenObject(_plateObjectSO, player);
-					OnPlateRemoved?.Invoke(this, EventArgs.Empty);
-				}
+				if (!(_plateSpawnedAmount > 0)) return;
+				_plateSpawnedAmount--;
+				KitchenObject.SpawnKitchenObject(_plateObjectSO, player);
+				OnPlateRemoved?.Invoke(this, EventArgs.Empty);
 			}
 			else
 			{
-				KitchenObject ingredient = player.GetKitchenObject();
-				if (_plateSpawnedAmount > 0)
+				var ingredient = player.GetKitchenObject();
+				if (!(_plateSpawnedAmount > 0)) return;
+				_plateSpawnedAmount--;
+				var plateKitchenObject = KitchenObject.SpawnKitchenObject(_plateObjectSO, player).GetComponent<PlateKitchenObject>();
+				OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+				if (plateKitchenObject.TryAddIngredient(ingredient.GetKitchenObjectSO()))
 				{
-					_plateSpawnedAmount--;
-					PlateKitchenObject plateKitchenObject = KitchenObject.SpawnKitchenObject(_plateObjectSO, player).GetComponent<PlateKitchenObject>();
-					OnPlateRemoved?.Invoke(this, EventArgs.Empty);
-					if (plateKitchenObject.TryAddIngredient(ingredient.GetKitchenObjectSO()))
-					{
-						Destroy(ingredient.gameObject);
-					};
-				}
+					Destroy(ingredient.gameObject);
+				};
 			}
 		}
 	}
-
 }

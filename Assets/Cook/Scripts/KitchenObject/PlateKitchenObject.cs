@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class PlateKitchenObject : KitchenObject
 	{
@@ -19,7 +19,7 @@ namespace Cook
 
 		private void Awake()
 		{
-			_kitchenObjectSOList = new();
+			_kitchenObjectSOList = new List<KitchenObjectSO>();
 		}
 
 		public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO)
@@ -32,15 +32,13 @@ namespace Cook
 			{
 				return false;
 			}
-			else
+
+			_kitchenObjectSOList.Add(kitchenObjectSO);
+			OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
 			{
-				_kitchenObjectSOList.Add(kitchenObjectSO);
-				OnIngredientAdded?.Invoke(this, new OnIngredientAddedEventArgs
-				{
-					KitchenObjectSO = kitchenObjectSO
-				});
-				return true;
-			}
+				KitchenObjectSO = kitchenObjectSO
+			});
+			return true;
 		}
 
 		public List<KitchenObjectSO> GetKitchenObjectSOList()
@@ -48,5 +46,4 @@ namespace Cook
 			return _kitchenObjectSOList;
 		}
 	}
-
 }

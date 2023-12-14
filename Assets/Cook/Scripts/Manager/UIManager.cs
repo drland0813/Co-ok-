@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class UIData
 	{
@@ -69,21 +69,19 @@ namespace Cook
 
 		public void Show<T>(bool remember = true) where T : UIController
 		{
-			for (int i = 0; i < Instance._listUI.Count; i++)
+			for (var i = 0; i < Instance._listUI.Count; i++)
 			{
-				if (Instance._listUI[i] is T)
+				if (Instance._listUI[i] is not T) continue;
+				if (Instance._currentUI != null)
 				{
-					if (Instance._currentUI != null)
+					if (remember)
 					{
-						if (remember)
-						{
-							Instance._history.Push(Instance._currentUI);
-						}
-						Instance._currentUI.Hide();
+						Instance._history.Push(Instance._currentUI);
 					}
-					Instance._listUI[i].Show();
-					Instance._currentUI = Instance._listUI[i];
+					Instance._currentUI.Hide();
 				}
+				Instance._listUI[i].Show();
+				Instance._currentUI = Instance._listUI[i];
 			}
 		}
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class ContentSizeFitterRefresh : MonoBehaviour
 	{
@@ -18,20 +18,17 @@ namespace Cook
 			RefreshContentFitter(rectTransform);
 		}
 
-		private void RefreshContentFitter(RectTransform transform)
+		private void RefreshContentFitter(RectTransform transformHasContentFitter)
 		{
-			if (transform == null || !transform.gameObject.activeSelf)
-			{
-				return;
-			}
+			if (transformHasContentFitter == null || !transformHasContentFitter.gameObject.activeSelf) return;
 
-			foreach (RectTransform child in transform)
+			foreach (RectTransform child in transformHasContentFitter)
 			{
 				RefreshContentFitter(child);
 			}
 
-			var layoutGroup = transform.GetComponent<LayoutGroup>();
-			var contentSizeFitter = transform.GetComponent<ContentSizeFitter>();
+			var layoutGroup = transformHasContentFitter.GetComponent<LayoutGroup>();
+			var contentSizeFitter = transformHasContentFitter.GetComponent<ContentSizeFitter>();
 			if (layoutGroup != null)
 			{
 				layoutGroup.SetLayoutHorizontal();
@@ -40,7 +37,7 @@ namespace Cook
 
 			if (contentSizeFitter != null)
 			{
-				LayoutRebuilder.ForceRebuildLayoutImmediate(transform);
+				LayoutRebuilder.ForceRebuildLayoutImmediate(transformHasContentFitter);
 			}
 		}
 	}

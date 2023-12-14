@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class DeliveryManagerSingleUI : MonoBehaviour
 	{
@@ -27,9 +27,9 @@ namespace Cook
 				Destroy(child.gameObject);
 			}
 
-			foreach (KitchenObjectSO kitchenObjectSO in recipeSO.KitchenObjectSOList)
+			foreach (var kitchenObjectSO in recipeSO.KitchenObjectSOList)
 			{
-				Transform icon = Instantiate(_iconTemplate, _iconContainer);
+				var icon = Instantiate(_iconTemplate, _iconContainer);
 				icon.gameObject.SetActive(true);
 				icon.GetComponent<Image>().sprite = kitchenObjectSO.Sprite;
 			}

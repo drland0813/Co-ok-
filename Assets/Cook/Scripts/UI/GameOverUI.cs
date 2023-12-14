@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class GameOverUI : UIController
 	{

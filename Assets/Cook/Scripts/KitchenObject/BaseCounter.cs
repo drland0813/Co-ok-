@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public abstract class BaseCounter : MonoBehaviour, IKitchenObjectParent
 	{
 		[SerializeField] private Transform _counterTopPoint;
 
-		protected KitchenObject _currentKitchenObject;
+		private KitchenObject _currentKitchenObject;
 
 		public abstract void Interact(PlayerController player);
 

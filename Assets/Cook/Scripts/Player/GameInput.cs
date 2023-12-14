@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class GameInput : MonoBehaviour
 	{
@@ -18,7 +18,7 @@ namespace Cook
 
 		public Vector2 GetMovementVectorNormalized()
 		{
-			Vector2 inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
+			var inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
 			if (!GameManager.Instance.IsGamePlaying())
 			{
 				inputVector = Vector2.zero;

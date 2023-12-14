@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class ClearCounter : BaseCounter
 	{
-		[SerializeField] private KitchenObjectSO _kitcjhenObjectSO;
-
 		public override void Interact(PlayerController player)
 		{
 			if (!HasKitchenObject())
@@ -21,7 +19,7 @@ namespace Cook
 			{
 				if (player.HasKitchenObject())
 				{
-					if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+					if (player.GetKitchenObject().TryGetPlate(out var plateKitchenObject))
 					{
 						if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
 						{
@@ -30,13 +28,11 @@ namespace Cook
 					}
 					else
 					{
-						if (GetKitchenObject().TryGetPlate(out plateKitchenObject))
+						if (!GetKitchenObject().TryGetPlate(out plateKitchenObject)) return;
+						if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO()))
 						{
-							if (plateKitchenObject.TryAddIngredient(player.GetKitchenObject().GetKitchenObjectSO()))
-							{
-								player.GetKitchenObject().DestroySelf();
-							};
-						}
+							player.GetKitchenObject().DestroySelf();
+						};
 					}
 				}
 				else

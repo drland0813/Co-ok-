@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class PlayerUI : MonoBehaviour
 	{
-		[SerializeField] Button _interactButton;
-		[SerializeField] Button _interactAlternatButton;
+		[SerializeField] private Button _interactButton;
+		[SerializeField] private Button _interactAlternatButton;
 
 
 		private Action _onInteractObject;

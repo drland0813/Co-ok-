@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class ContainerCounter : BaseCounter
 	{
@@ -20,15 +20,12 @@ namespace Cook
 			}
 			else
 			{
-				if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+				if (!player.GetKitchenObject().TryGetPlate(out var plateKitchenObject)) return;
+				if (plateKitchenObject.TryAddIngredient(_kitchenObjectSO))
 				{
-					if (plateKitchenObject.TryAddIngredient(_kitchenObjectSO))
-					{
-						// GetKitchenObject().DestroySelf();
-					};
-				}
+					// GetKitchenObject().DestroySelf();
+				};
 			}
-
 		}
 	}
 }

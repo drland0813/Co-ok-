@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class PlateIconSingleUI : MonoBehaviour
 	{

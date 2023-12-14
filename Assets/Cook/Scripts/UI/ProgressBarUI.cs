@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class ProgressBarUI : MonoBehaviour
 	{
 		[SerializeField] private Image _barImage;
-		[SerializeField] GameObject _hasProgressGameObject;
+		[SerializeField] private GameObject _hasProgressGameObject;
 
 		private IHasProgress _iHasProgress;
 
@@ -18,17 +18,17 @@ namespace Cook
 			_iHasProgress = _hasProgressGameObject.GetComponent<IHasProgress>();
 			_iHasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
 			_barImage.fillAmount = 0;
-			EnableProgessBarUI(false);
+			EnableProgressBarUI(false);
 		}
 
 		private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
 		{
 			_barImage.fillAmount = e.ProgessNomarlized;
-			bool enableUI = e.ProgessNomarlized > 0 && e.ProgessNomarlized < 1;
-			EnableProgessBarUI(enableUI);
+			var enableUI = e.ProgessNomarlized is > 0 and < 1;
+			EnableProgressBarUI(enableUI);
 		}
 
-		private void EnableProgessBarUI(bool enable)
+		private void EnableProgressBarUI(bool enable)
 		{
 			gameObject.SetActive(enable);
 		}

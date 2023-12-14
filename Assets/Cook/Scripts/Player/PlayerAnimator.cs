@@ -2,14 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
+	[RequireComponent(typeof(PlayerController))]
 	public class PlayerAnimator : MonoBehaviour
 	{
-		[SerializeField] PlayerController _controller;
+		[SerializeField] private PlayerController _controller;
 
 		private const string IS_WALKING = "isWalking";
 		private Animator _animator;
+		private static readonly int IsWalking = Animator.StringToHash(IS_WALKING);
+
+		public PlayerAnimator(PlayerController controller)
+		{
+			_controller = controller;
+		}
 
 		private void Awake()
 		{
@@ -18,7 +25,7 @@ namespace Cook
 
 		private void Update()
 		{
-			_animator.SetBool(IS_WALKING, _controller.IsWalking());
+			_animator.SetBool(IsWalking, _controller.IsWalking());
 		}
 	}
 }

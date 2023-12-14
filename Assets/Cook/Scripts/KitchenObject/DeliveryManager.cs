@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class DeliveryManager : Singleton<DeliveryManager>
 	{
@@ -13,7 +15,7 @@ namespace Cook
 		[SerializeField] private RecipeListSO _recipeListSO;
 		[SerializeField] private float _spawnRecipeTimer;
 		[SerializeField] private float _spawnRecipeTimerMax;
-		[SerializeField] private int _watingRecipeMax;
+		[SerializeField] private int _waitingRecipeMax;
 		private List<RecipeSO> _waitingRecipeSOList;
 
 		private int _successfulRecipesAmount = 0;
@@ -26,10 +28,10 @@ namespace Cook
 
 		private void Start()
 		{
-			StartCoroutine(StartRecievingOrdersCoroutine());
+			StartCoroutine(StartReceivingOrdersCoroutine());
 		}
 
-		IEnumerator StartRecievingOrdersCoroutine()
+		private IEnumerator StartReceivingOrdersCoroutine()
 		{
 			while (_spawnRecipeTimer > 0)
 			{
@@ -38,12 +40,12 @@ namespace Cook
 				{
 					_spawnRecipeTimer = _spawnRecipeTimerMax;
 
-					if (_waitingRecipeSOList.Count < _watingRecipeMax)
+					if (_waitingRecipeSOList.Count < _waitingRecipeMax)
 					{
-						RecipeSO waitingRecipeSO = _recipeListSO.Recipes[UnityEngine.Random.Range(0, _recipeListSO.Recipes.Count)];
+						var waitingRecipeSO = _recipeListSO.Recipes[UnityEngine.Random.Range(0, _recipeListSO.Recipes.Count)];
 						_waitingRecipeSOList.Add(waitingRecipeSO);
 
-						OnRecipeSpawned.Invoke(this, EventArgs.Empty);
+						OnRecipeSpawned?.Invoke(this, EventArgs.Empty);
 					}
 				}
 				yield return null;
@@ -52,38 +54,27 @@ namespace Cook
 
 		public void DeliveryRecipe(PlateKitchenObject plateKitchenObject)
 		{
-			for (int i = 0; i < _waitingRecipeSOList.Count; i++)
+			for (var i = 0; i < _waitingRecipeSOList.Count; i++)
 			{
-				RecipeSO watingRecipeSO = _waitingRecipeSOList[i];
+				var watingRecipeSO = _waitingRecipeSOList[i];
 
-				if (watingRecipeSO.KitchenObjectSOList.Count == plateKitchenObject.GetKitchenObjectSOList().Count)
+				if (watingRecipeSO.KitchenObjectSOList.Count != plateKitchenObject.GetKitchenObjectSOList().Count) continue;
+				var plateContentMatchesRecipe = true;
+				foreach (var recipeKitchenObjectSO in watingRecipeSO.KitchenObjectSOList)
 				{
-					bool plateContentMatchesRecipe = true;
-					foreach (KitchenObjectSO recipeKitchenObjectSO in watingRecipeSO.KitchenObjectSOList)
+					var ingredientFound = plateKitchenObject.GetKitchenObjectSOList().Any(plateKitchenObjectSO => plateKitchenObjectSO == recipeKitchenObjectSO);
+					if (!ingredientFound)
 					{
-						bool ingredientFound = false;
-						foreach (KitchenObjectSO plateKitchenObjectSO in plateKitchenObject.GetKitchenObjectSOList())
-						{
-							if (plateKitchenObjectSO == recipeKitchenObjectSO)
-							{
-								ingredientFound = true;
-								break;
-							}
-						}
-						if (!ingredientFound)
-						{
-							plateContentMatchesRecipe = false;
-						}
-					}
-					if (plateContentMatchesRecipe)
-					{
-						_successfulRecipesAmount++;
-						_waitingRecipeSOList.RemoveAt(i);
-						OnRecipeCompleted.Invoke(this, EventArgs.Empty);
-						SoundManager.Instance.PlaySound(SoundType.DeliverySuccess, transform);
-						return;
+						plateContentMatchesRecipe = false;
 					}
 				}
+
+				if (!plateContentMatchesRecipe) continue;
+				_successfulRecipesAmount++;
+				_waitingRecipeSOList.RemoveAt(i);
+				OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
+				SoundManager.Instance.PlaySound(SoundType.DeliverySuccess, transform);
+				return;
 			}
 			SoundManager.Instance.PlaySound(SoundType.DeliveryFail, transform);
 		}

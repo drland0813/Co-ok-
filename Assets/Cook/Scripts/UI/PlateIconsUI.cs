@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class PlateIconsUI : MonoBehaviour
 	{
@@ -32,7 +32,7 @@ namespace Cook
 
 			foreach (var item in _plateKitchenObject.GetKitchenObjectSOList())
 			{
-				Transform iconTransform = Instantiate(_iconTemplate, _iconContainer);
+				var iconTransform = Instantiate(_iconTemplate, _iconContainer);
 				iconTransform.gameObject.SetActive(true);
 				iconTransform.GetComponent<PlateIconSingleUI>().SetKitchenObjectIcon(item);
 			}

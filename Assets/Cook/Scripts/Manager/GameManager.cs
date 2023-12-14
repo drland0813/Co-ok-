@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class GameManager : Singleton<GameManager>
 	{
@@ -61,6 +61,8 @@ namespace Cook
 					break;
 				case GameState.GameOver:
 					break;
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 
@@ -84,7 +86,7 @@ namespace Cook
 			return _countDownToStartTimer;
 		}
 
-		public float GetGamePlayingTimerNomarlized()
+		public float GetGamePlayingTimerNormalized()
 		{
 			return _gamePlayingTimer / _gamePlayingTimerMax;
 		}

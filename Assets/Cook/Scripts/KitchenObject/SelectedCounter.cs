@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class SelectedCounter : MonoBehaviour
 	{
@@ -23,7 +23,7 @@ namespace Cook
 
 		private void Show()
 		{
-			foreach (GameObject item in _visualObjects)
+			foreach (var item in _visualObjects)
 			{
 				item.SetActive(true);
 			}
@@ -31,11 +31,10 @@ namespace Cook
 
 		private void Hide()
 		{
-			foreach (GameObject item in _visualObjects)
+			foreach (var item in _visualObjects)
 			{
 				item.SetActive(false);
 			}
 		}
 	}
-
 }

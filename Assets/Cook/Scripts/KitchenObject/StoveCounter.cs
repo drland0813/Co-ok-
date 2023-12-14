@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class StoveCounter : BaseCounter, IHasProgress
 	{
@@ -41,7 +41,7 @@ namespace Cook
 			StartCoroutine(WorkingCoroutine());
 		}
 
-		IEnumerator WorkingCoroutine()
+		private IEnumerator WorkingCoroutine()
 		{
 			while (!GameManager.Instance.IsGameOver())
 			{
@@ -104,48 +104,44 @@ namespace Cook
 		{
 			if (!HasKitchenObject())
 			{
-				if (player.HasKitchenObject())
-				{
-					if (HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO()))
-					{
-						player.GetKitchenObject().SetKitchenObjectParent(this);
-						_fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
-						_state = State.Frying;
-						_fryingTimer = 0f;
+				if (!player.HasKitchenObject()) return;
+				if (!HasRecipeWithInput(player.GetKitchenObject().GetKitchenObjectSO())) return;
+				
+				player.GetKitchenObject().SetKitchenObjectParent(this);
+				_fryingRecipeSO = GetFryingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
+				_state = State.Frying;
+				_fryingTimer = 0f;
 
-						OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
-						{
-							State = _state
-						});
-						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-						{
-							ProgessNomarlized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
-						});
-					}
-				}
+				OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
+				{
+					State = _state
+				});
+				OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+				{
+					ProgessNomarlized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
+				});
 			}
 			else
 			{
 				if (player.HasKitchenObject())
 				{
-					if (player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject))
+					if (!player.GetKitchenObject().TryGetPlate(out PlateKitchenObject plateKitchenObject)) return;
+					
+					if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
 					{
-						if (plateKitchenObject.TryAddIngredient(GetKitchenObject().GetKitchenObjectSO()))
+						GetKitchenObject().DestroySelf();
+
+						_state = State.Idle;
+						OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
 						{
-							GetKitchenObject().DestroySelf();
+							State = _state
+						});
 
-							_state = State.Idle;
-							OnStateChanged?.Invoke(this, new OnStateChangedEventArgs
-							{
-								State = _state
-							});
-
-							OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
-							{
-								ProgessNomarlized = 0f
-							});
-						};
-					}
+						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
+						{
+							ProgessNomarlized = 0f
+						});
+					};
 				}
 				else
 				{

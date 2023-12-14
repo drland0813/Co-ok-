@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 
 	public class PlayerController : MonoBehaviour, IKitchenObjectParent
@@ -41,7 +41,7 @@ namespace Cook
 			}
 			Instance = this;
 			_playerUI.RegisterInteractObjectCallback(OnHandleInteractions);
-			_playerUI.RegisterInteractAlternateObjectCallback(OnHanldeInteractAlternate);
+			_playerUI.RegisterInteractAlternateObjectCallback(OnHandeInteractAlternate);
 
 		}
 
@@ -53,21 +53,22 @@ namespace Cook
 
 		private void HandleMovement()
 		{
-			Vector2 inputVector = _gameInput.GetMovementVectorNormalized();
-			Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+			var inputVector = _gameInput.GetMovementVectorNormalized();
+			var moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
-			float moveDistance = _moveSpeed * Time.deltaTime;
-			float playerRadius = 0.7f;
-			float playerHeight = 2f;
+			var moveDistance = _moveSpeed * Time.deltaTime;
+			var playerRadius = 0.7f;
+			var playerHeight = 2f;
 
-			bool canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
+			var position = transform.position;
+			var canMove = !Physics.CapsuleCast(position, position + Vector3.up * playerHeight, playerRadius, moveDir, moveDistance);
 
 			_isWalking = moveDir != Vector3.zero;
 
 			if (!canMove)
 			{
-				Vector3 moveDirX = new Vector3(moveDir.x, 0, 0);
-				canMove = moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
+				var moveDirX = new Vector3(moveDir.x, 0, 0);
+				canMove = moveDir.x != 0 && !Physics.CapsuleCast(position, position + Vector3.up * playerHeight, playerRadius, moveDirX, moveDistance);
 
 				if (canMove)
 				{
@@ -75,8 +76,8 @@ namespace Cook
 				}
 				else
 				{
-					Vector3 moveDirZ = new Vector3(0, 0, moveDir.z);
-					canMove = moveDir.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
+					var moveDirZ = new Vector3(0, 0, moveDir.z);
+					canMove = moveDir.z != 0 && !Physics.CapsuleCast(position, position + Vector3.up * playerHeight, playerRadius, moveDirZ, moveDistance);
 
 					if (canMove)
 					{
@@ -94,14 +95,14 @@ namespace Cook
 
 		private void HandleInteractions()
 		{
-			Vector2 inputVector = _gameInput.GetMovementVectorNormalized();
-			Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+			var inputVector = _gameInput.GetMovementVectorNormalized();
+			var moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
 			if (moveDir != Vector3.zero)
 				_lastInteractPosition = moveDir;
 
-			float interactDistance = 2f;
-			if (Physics.Raycast(transform.position, _lastInteractPosition, out RaycastHit raycastHit, interactDistance))
+			var interactDistance = 2f;
+			if (Physics.Raycast(transform.position, _lastInteractPosition, out var raycastHit, interactDistance))
 			{
 				if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
 				{
@@ -128,7 +129,7 @@ namespace Cook
 			_selectedCounter?.Interact(this);
 		}
 
-		private void OnHanldeInteractAlternate()
+		private void OnHandeInteractAlternate()
 		{
 			if (!GameManager.Instance.IsGamePlaying()) return;
 
@@ -180,5 +181,4 @@ namespace Cook
 			return _currentKitchenObject != null;
 		}
 	}
-
 }

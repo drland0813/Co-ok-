@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public enum SoundType
 	{
@@ -41,7 +41,7 @@ namespace Cook
 
 		public void PlaySound(SoundType type, Transform point)
 		{
-			if (_soundDict.TryGetValue(type, out AudioClip[] audioClips))
+			if (_soundDict.TryGetValue(type, out var audioClips))
 			{
 				PlaySound(audioClips, point.position);
 			}
@@ -51,9 +51,9 @@ namespace Cook
 			}
 		}
 
-		private void PlaySound(AudioClip[] audioClips, Vector3 point, float volume = 1f)
+		private void PlaySound(IReadOnlyList<AudioClip> audioClips, Vector3 point, float volume = 1f)
 		{
-			AudioSource.PlayClipAtPoint(audioClips[UnityEngine.Random.Range(0, audioClips.Length)], point, volume);
+			AudioSource.PlayClipAtPoint(audioClips[UnityEngine.Random.Range(0, audioClips.Count)], point, volume);
 		}
 	}
 }

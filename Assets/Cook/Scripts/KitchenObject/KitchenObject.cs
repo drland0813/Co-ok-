@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class KitchenObject : MonoBehaviour
 	{
@@ -22,8 +22,8 @@ namespace Cook
 
 		public void SetKitchenObjectParent(IKitchenObjectParent kitchenObjectParent)
 		{
-			if (_kitchenObjectParent != null) _kitchenObjectParent.ClearKitchenObject();
-			
+			_kitchenObjectParent?.ClearKitchenObject();
+
 			_kitchenObjectParent = kitchenObjectParent;
 			_kitchenObjectParent.SetKitchenObject(this);
 
@@ -39,8 +39,8 @@ namespace Cook
 
 		public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
 		{
-			Transform kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab);
-			KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+			var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab);
+			var kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
 			kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
 
 			return kitchenObject;
@@ -53,11 +53,8 @@ namespace Cook
 				plateKitchenObject = this as PlateKitchenObject;
 				return true;
 			}
-			else
-			{
-				plateKitchenObject = null;
-				return false;
-			}
+			plateKitchenObject = null;
+			return false;
 		}
 	}
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cook
+namespace Drland.Cook
 {
 	public class DeliveryManagerUI : MonoBehaviour
 	{
@@ -44,9 +44,9 @@ namespace Cook
 			}
 
 
-			foreach (RecipeSO recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList())
+			foreach (var recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList())
 			{
-				DeliveryManagerSingleUI recipeUI = Instantiate(_recipeTemplate, _recipeContainer).GetComponent<DeliveryManagerSingleUI>();
+				var recipeUI = Instantiate(_recipeTemplate, _recipeContainer).GetComponent<DeliveryManagerSingleUI>();
 				recipeUI.SetUpUI(recipeSO);
 				recipeUI.gameObject.SetActive(true);
 			}
