@@ -8,7 +8,7 @@ namespace Drland.Cook
 	public class PlatesCounter : BaseCounter
 	{
 		public event EventHandler OnPlateSpawned;
-		public event EventHandler OnPlateRemoved;
+		public event EventHandler OnPlateRemoved; 
 
 
 		[SerializeField] private KitchenObjectSO _plateObjectSO;
@@ -18,8 +18,11 @@ namespace Drland.Cook
 		private float _spawnPlateTimer;
 		private float _plateSpawnedAmount;
 
+		private PlateKitchenObject _plateKitchenObject;
+
 		private void Start()
 		{
+			_plateKitchenObject = _plateObjectSO.Prefab.GetComponent<PlateKitchenObject>();
 			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
@@ -54,6 +57,8 @@ namespace Drland.Cook
 			{
 				var ingredient = player.GetKitchenObject();
 				if (!(_plateSpawnedAmount > 0)) return;
+				if (!_plateKitchenObject.CheckIngredientIsValid(ingredient.GetKitchenObjectSO())) return;
+
 				_plateSpawnedAmount--;
 				var plateKitchenObject = KitchenObject.SpawnKitchenObject(_plateObjectSO, player).GetComponent<PlateKitchenObject>();
 				OnPlateRemoved?.Invoke(this, EventArgs.Empty);

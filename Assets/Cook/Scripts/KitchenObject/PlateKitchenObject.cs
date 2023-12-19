@@ -40,6 +40,12 @@ namespace Drland.Cook
 			});
 			return true;
 		}
+		
+		public bool CheckIngredientIsValid(KitchenObjectSO kitchenObjectSO)
+		{
+			return _validKitchenObjectSOList.Contains(kitchenObjectSO);
+		}
+
 
 		public List<KitchenObjectSO> GetKitchenObjectSOList()
 		{
