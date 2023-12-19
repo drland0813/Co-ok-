@@ -35,7 +35,7 @@ namespace Drland.Cook
 			UpdateVisual();
 		}
 
-		public void UpdateVisual()
+		private void UpdateVisual()
 		{
 			foreach (Transform child in _recipeContainer)
 			{

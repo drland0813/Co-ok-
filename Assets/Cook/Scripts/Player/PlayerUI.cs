@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Drland.Cook
@@ -9,7 +10,7 @@ namespace Drland.Cook
 	public class PlayerUI : MonoBehaviour
 	{
 		[SerializeField] private Button _interactButton;
-		[SerializeField] private Button _interactAlternatButton;
+		[SerializeField] private Button _interactAlternateButton;
 
 
 		private Action _onInteractObject;
@@ -23,7 +24,7 @@ namespace Drland.Cook
 				_onInteractObject?.Invoke();
 			});
 
-			_interactAlternatButton.onClick.AddListener(() =>
+			_interactAlternateButton.onClick.AddListener(() =>
 			{
 				_onInteractAlternateObject?.Invoke();
 			});
@@ -41,7 +42,7 @@ namespace Drland.Cook
 
 		public void EnableInteractAlternateButton(bool enable)
 		{
-			_interactAlternatButton.gameObject.SetActive(enable);
+			_interactAlternateButton.gameObject.SetActive(enable);
 		}
 	}
 

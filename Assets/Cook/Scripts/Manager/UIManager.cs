@@ -47,14 +47,6 @@ namespace Drland.Cook
 			// Show("UI/GameOverUI");
 		}
 
-		private void Update()
-		{
-			if (Input.GetKeyDown(KeyCode.A))
-			{
-				Show("UI/GameOverUI");
-			}
-		}
-
 		public T GetUI<T>() where T : UIController
 		{
 			for (int i = 0; i < Instance._listUI.Count; i++)
@@ -69,9 +61,8 @@ namespace Drland.Cook
 
 		public void Show<T>(bool remember = true) where T : UIController
 		{
-			for (var i = 0; i < Instance._listUI.Count; i++)
+			foreach (var t in Instance._listUI.Where(t => t is T))
 			{
-				if (Instance._listUI[i] is not T) continue;
 				if (Instance._currentUI != null)
 				{
 					if (remember)
@@ -80,8 +71,8 @@ namespace Drland.Cook
 					}
 					Instance._currentUI.Hide();
 				}
-				Instance._listUI[i].Show();
-				Instance._currentUI = Instance._listUI[i];
+				t.Show();
+				Instance._currentUI = t;
 			}
 		}
 

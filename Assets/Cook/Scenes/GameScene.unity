@@ -228,6 +228,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 7
   _rotateSpeed: 20
+  _interactRadius: 0.7
+  _interactDistance: 2
+  _height: 2
   _gameInput: {fileID: 513052940}
   _playerUI: {fileID: 134486186}
   _kitchenObjectHoldPoint: {fileID: 1938286054}
@@ -260,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interactButton: {fileID: 1919773594}
-  _interactAlternatButton: {fileID: 925027645}
+  _interactAlternateButton: {fileID: 925027645}
 --- !u!1001 &171104735
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,7 +1040,7 @@ MonoBehaviour:
   _recipeListSO: {fileID: 11400000, guid: 3307cbd46e279094191a6b15c4bd0ed1, type: 2}
   _spawnRecipeTimer: 1
   _spawnRecipeTimerMax: 3
-  _watingRecipeMax: 4
+  _waitingRecipeMax: 0
 --- !u!4 &641359197
 Transform:
   m_ObjectHideFlags: 0

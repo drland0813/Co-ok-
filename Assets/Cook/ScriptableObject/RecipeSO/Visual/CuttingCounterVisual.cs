@@ -8,6 +8,8 @@ namespace Drland.Cook
 	public class CuttingCounterVisual : MonoBehaviour
 	{
 		private const string CUT = "Cut";
+		private static readonly int Cut = Animator.StringToHash(CUT);
+
 
 		[SerializeField] private CuttingCounter _cuttingCounter;
 
@@ -25,7 +27,7 @@ namespace Drland.Cook
 
 		private void CuttingCounter_OnCut(object sender, EventArgs e)
 		{
-			_animator.SetTrigger(CUT);
+			_animator.SetTrigger(Cut);
 		}
 	}
 
