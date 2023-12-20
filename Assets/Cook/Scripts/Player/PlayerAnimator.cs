@@ -7,20 +7,16 @@ namespace Drland.Cook
 	[RequireComponent(typeof(PlayerController))]
 	public class PlayerAnimator : MonoBehaviour
 	{
-		[SerializeField] private PlayerController _controller;
+		[SerializeField] private Animator _animator;
 
-		private const string IS_WALKING = "isWalking";
-		private Animator _animator;
+		private PlayerController _controller;
+
+		private const string IS_WALKING = "IsWalking";
 		private static readonly int IsWalking = Animator.StringToHash(IS_WALKING);
-
-		public PlayerAnimator(PlayerController controller)
-		{
-			_controller = controller;
-		}
 
 		private void Awake()
 		{
-			_animator = GetComponent<Animator>();
+			_controller = GetComponent<PlayerController>();
 		}
 
 		private void Update()
