@@ -162,6 +162,11 @@ namespace Drland.Cook
 		{
 			return _isWalking;
 		}
+		
+		public int IsHavingKitchenObject()
+		{
+			return _currentKitchenObject != null ? 1 : 0;
+		}
 
 		public Transform GetKitchenObjectFollowTransform()
 		{
