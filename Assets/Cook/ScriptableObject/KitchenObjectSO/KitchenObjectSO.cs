@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Drland.Cook
 {
@@ -9,7 +10,7 @@ namespace Drland.Cook
 	{
 		public Transform Prefab;
 		public Sprite Sprite;
-		public KitchenObjectType Type;
+		public bool IsIngredient;
 	}
 
 	public enum KitchenObjectType

@@ -10,10 +10,17 @@ namespace Drland.Cook
 		[SerializeField] private StoveCounter _stoveCounter;
 		[SerializeField] private GameObject _stoveOnGameObject;
 		[SerializeField] private GameObject _particleGameObject;
+		[SerializeField] private GameObject _emptySlotIcon;
 
 		private void Start()
 		{
 			_stoveCounter.OnStateChanged += StoveCounter_OnStateChanged;
+			_stoveCounter.OnHasKitchenObject += StoveCounter_OnHasKitchenObject;
+		}
+
+		private void StoveCounter_OnHasKitchenObject(object sender, StoveCounter.OnHasKitchenObjectArgs e)
+		{
+			_emptySlotIcon.SetActive(!e.IsHavingKitchenObject);
 		}
 
 		private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
@@ -22,5 +29,6 @@ namespace Drland.Cook
 			_stoveOnGameObject.SetActive(showVisual);
 			_particleGameObject.SetActive(showVisual);
 		}
+		
 	}
 }

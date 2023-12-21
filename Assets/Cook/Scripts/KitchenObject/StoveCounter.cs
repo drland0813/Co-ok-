@@ -11,6 +11,11 @@ namespace Drland.Cook
 		public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
 		public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+		public event EventHandler<OnHasKitchenObjectArgs> OnHasKitchenObject;
+		public class OnHasKitchenObjectArgs : EventArgs
+		{
+			public bool IsHavingKitchenObject;
+		}
 		public class OnStateChangedEventArgs : EventArgs
 		{
 			public State State;
@@ -45,8 +50,14 @@ namespace Drland.Cook
 		{
 			while (!GameManager.Instance.IsGameOver())
 			{
+				OnHasKitchenObject?.Invoke(this, new OnHasKitchenObjectArgs()
+				{
+					IsHavingKitchenObject = HasKitchenObject()
+				});
+				
 				if (HasKitchenObject())
 				{
+					GetKitchenObject().EnableKitchenObjectUI(true);
 					if (_state == State.Frying)
 					{
 						_fryingTimer += Time.deltaTime;
@@ -74,7 +85,7 @@ namespace Drland.Cook
 						_burningTimer += Time.deltaTime;
 						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 						{
-							ProgessNomarlized = (float)_burningTimer / _burningRecipeSO.BurningTimeMax
+							ProgessNomarlized = _burningTimer / _burningRecipeSO.BurningTimeMax
 						});
 
 						if (_burningTimer > _burningRecipeSO.BurningTimeMax)

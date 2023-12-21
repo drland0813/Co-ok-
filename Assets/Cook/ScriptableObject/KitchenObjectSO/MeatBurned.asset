@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MeatBurned
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4443347904714381249, guid: e645da70493502648926a173077afaff, type: 3}
-  Sprite: {fileID: 21300000, guid: 713ea9afa60dd6e4ebf6503a33e8cc99, type: 3}
-  Type: 8
+  Sprite: {fileID: 21300000, guid: 2f1338ef3cde58c4289ff0ecf3c6fd8b, type: 3}
+  IsIngredient: 0

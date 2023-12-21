@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4443347904714381249, guid: 169cb77c237e97747a3451c1d4ef7624, type: 3}
   Sprite: {fileID: 21300000, guid: f1f50c7ef90b19741b26f2040806cf56, type: 3}
-  Type: 7
+  IsIngredient: 1

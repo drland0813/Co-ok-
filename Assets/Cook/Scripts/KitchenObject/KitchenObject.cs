@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 namespace Drland.Cook
@@ -7,6 +8,9 @@ namespace Drland.Cook
 	public class KitchenObject : MonoBehaviour
 	{
 		[SerializeField] private KitchenObjectSO _kitchenObjectSO;
+		
+		[CanBeNull]
+		[SerializeField] private KitchenObjectUI _kitchenObjectUI;
 
 		private IKitchenObjectParent _kitchenObjectParent;
 
@@ -30,6 +34,12 @@ namespace Drland.Cook
 			transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
 			transform.localPosition = Vector3.zero;
 			transform.localEulerAngles = Vector3.zero;
+
+			if (kitchenObjectParent is not StoveCounter)
+			{
+				EnableKitchenObjectUI(_kitchenObjectSO.IsIngredient); 
+			}
+
 		}
 
 		public void DestroySelf()
@@ -38,12 +48,21 @@ namespace Drland.Cook
 			Destroy(gameObject);
 		}
 
+		public void EnableKitchenObjectUI(bool enable)
+		{
+			if (!_kitchenObjectUI) return;
+			_kitchenObjectUI.Enable(enable);
+			if (!enable) return;
+			_kitchenObjectUI.SetKitchenObjectIcon(_kitchenObjectSO);
+		}
+
 		public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
 		{
 			var kitchenObjectTransform = Instantiate(kitchenObjectSO.Prefab);
 			var kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-			kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
-
+			kitchenObject.EnableKitchenObjectUI(kitchenObjectSO.IsIngredient); 
+			kitchenObject.SetKitchenObjectParent(kitchenObjectParent);  
+			
 			return kitchenObject;
 		}
 

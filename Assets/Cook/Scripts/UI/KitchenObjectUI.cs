@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Drland.Cook
 {
-	public class PlateIconSingleUI : MonoBehaviour
+	public class KitchenObjectUI : MonoBehaviour
 	{
 		[SerializeField] private Image _icon;
 
@@ -13,6 +13,9 @@ namespace Drland.Cook
 		{
 			_icon.sprite = kitchenObjectSO.Sprite;
 		}
-
+		public void Enable(bool enable)
+		{
+			gameObject.SetActive(enable);
+		}
 	}
 }
