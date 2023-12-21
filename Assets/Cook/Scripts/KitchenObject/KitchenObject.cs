@@ -29,6 +29,7 @@ namespace Drland.Cook
 
 			transform.parent = kitchenObjectParent.GetKitchenObjectFollowTransform();
 			transform.localPosition = Vector3.zero;
+			transform.localEulerAngles = Vector3.zero;
 		}
 
 		public void DestroySelf()
