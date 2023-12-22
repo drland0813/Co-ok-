@@ -8,7 +8,7 @@ namespace Drland.Cook
 {
 	public class CuttingCounter : BaseCounter, IHasProgress
 	{
-		public static event EventHandler OnAnyCut;
+		// public static event EventHandler OnAnyCut;
 		public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 		public event EventHandler OnCut;
 		

@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 using UnityEngine.Serialization;
 
 namespace Drland.Cook
@@ -29,7 +31,11 @@ namespace Drland.Cook
 
 		[SerializeField] private GameInput _gameInput;
 		[SerializeField] private PlayerUI _playerUI;
-		[SerializeField] private Transform _kitchenObjectHoldPoint;
+		
+		[Header("Animation Rigging")]		
+		[SerializeField] private ArmsRiggingController _armsRiggingController;
+		[SerializeField] private List<KitchenObjectHolder> _kitchenObjectHolderList;
+		[SerializeField] private RigBuilder _rigBuilder;
 
 
 		private bool _isWalking;
@@ -37,6 +43,7 @@ namespace Drland.Cook
 		private BaseCounter _selectedCounter;
 
 		private KitchenObject _currentKitchenObject;
+		private KitchenObjectDataRigging _kitchenObjectDataRigging;
 
 
 		private void Awake()
@@ -158,24 +165,42 @@ namespace Drland.Cook
 
 		}
 
+		private Transform GetKitchenObjectHolder()
+		{
+			var type = _currentKitchenObject.GetKitchenObjectSO().Type;
+			var kitchenObjectHolder = _kitchenObjectHolderList.FirstOrDefault(k => k.Type == type);
+			return kitchenObjectHolder.Holder;
+		}
+
+		private void EnableAnimationRigging(bool enable)
+		{
+			_rigBuilder.enabled = false;
+			if (!enable)
+			{
+				_armsRiggingController.DisableArmsRigging();
+			}
+			else
+			{
+				_kitchenObjectDataRigging = _currentKitchenObject.GetKitchenObjectDataRigging();
+				_armsRiggingController.EnableArmsRigging(_kitchenObjectDataRigging);
+			}
+			_rigBuilder.enabled = true;
+		}
+
 		public bool IsWalking()
 		{
 			return _isWalking;
 		}
-		
-		public int IsHavingKitchenObject()
-		{
-			return _currentKitchenObject != null ? 1 : 0;
-		}
 
 		public Transform GetKitchenObjectFollowTransform()
 		{
-			return _kitchenObjectHoldPoint;
+			return GetKitchenObjectHolder();
 		}
 
 		public void SetKitchenObject(KitchenObject kitchenObject)
 		{
 			_currentKitchenObject = kitchenObject;
+			EnableAnimationRigging(true);
 			if (kitchenObject)
 				SoundManager.Instance.PlaySound(SoundType.ObjectPickup, transform);
 		}
@@ -188,6 +213,8 @@ namespace Drland.Cook
 		public void ClearKitchenObject()
 		{
 			_currentKitchenObject = null;
+			_kitchenObjectDataRigging = null;
+			EnableAnimationRigging(false);
 		}
 
 		public bool HasKitchenObject()

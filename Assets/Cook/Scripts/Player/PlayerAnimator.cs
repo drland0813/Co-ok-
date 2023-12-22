@@ -23,7 +23,8 @@ namespace Drland.Cook
 		private void Update()
 		{
 			_animator.SetBool(IsWalking, _controller.IsWalking());
-			_animator.SetLayerWeight(HANDLE_OBJECT_LAYER, _controller.IsHavingKitchenObject());
+			var layer = _controller.HasKitchenObject() ? 1 : 0;
+			// _animator.SetLayerWeight(HANDLE_OBJECT_LAYER, layer);
 		}
 	}
 }

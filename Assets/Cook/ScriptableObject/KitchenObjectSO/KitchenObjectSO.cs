@@ -10,6 +10,7 @@ namespace Drland.Cook
 	{
 		public Transform Prefab;
 		public Sprite Sprite;
+		public KitchenObjectType Type;
 		public bool IsIngredient;
 	}
 
@@ -21,9 +22,8 @@ namespace Drland.Cook
 		CheeseSlice,
 		Cabbage,
 		CabbageSlices,
-		MeatUncooked,
-		MeatCooked,
-		MeatBurned,
-		Bread
+		Meat,
+		Bread,
+		Plate
 	}
 }

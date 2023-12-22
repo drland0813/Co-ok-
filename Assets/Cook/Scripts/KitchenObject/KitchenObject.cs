@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Drland.Cook
 {
@@ -11,12 +12,18 @@ namespace Drland.Cook
 		
 		[CanBeNull]
 		[SerializeField] private KitchenObjectUI _kitchenObjectUI;
+		[SerializeField] private KitchenObjectDataRigging _kitchenObjectDataRigging;
 
 		private IKitchenObjectParent _kitchenObjectParent;
 
 		public KitchenObjectSO GetKitchenObjectSO()
 		{
 			return _kitchenObjectSO;
+		}
+
+		public KitchenObjectDataRigging GetKitchenObjectDataRigging()
+		{
+			return _kitchenObjectDataRigging;
 		}
 
 		public IKitchenObjectParent GetKitchenObjectParent()
