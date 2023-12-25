@@ -34,7 +34,7 @@ namespace Drland.Cook
 			{
 				var iconTransform = Instantiate(_iconTemplate, _iconContainer);
 				iconTransform.gameObject.SetActive(true);
-				iconTransform.GetComponent<KitchenObjectUI>().SetKitchenObjectIcon(item);
+				iconTransform.GetComponent<KitchenObjectUI>().SetupUI(item);
 			}
 		}
 	}

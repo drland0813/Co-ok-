@@ -7,10 +7,11 @@ namespace Drland.Cook
 {
 	public class KitchenObjectUI : MonoBehaviour
 	{
-		[SerializeField] private Image _icon;
+		[SerializeField] protected Image _icon;
 
-		public void SetKitchenObjectIcon(KitchenObjectSO kitchenObjectSO)
+		public virtual void SetupUI(KitchenObjectSO kitchenObjectSO)
 		{
+			_icon.enabled = true;
 			_icon.sprite = kitchenObjectSO.Sprite;
 		}
 		public void Enable(bool enable)

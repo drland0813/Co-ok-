@@ -24,6 +24,7 @@ namespace Drland.Cook
 		CabbageSlices,
 		Meat,
 		Bread,
-		Plate
+		Plate,
+		Knife
 	}
 }

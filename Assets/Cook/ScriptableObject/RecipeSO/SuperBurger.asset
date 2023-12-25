@@ -16,7 +16,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 43fc009d4df736945b07661c4dae05bb, type: 2}
   - {fileID: 11400000, guid: c18dd804cb44079409d22a6f08a89cb7, type: 2}
   - {fileID: 11400000, guid: 7e136a50c50355f4b80d9604178be94e, type: 2}
-  - {fileID: 11400000, guid: c27d840a01f7b534290e47996a143fd7, type: 2}
   - {fileID: 11400000, guid: 6602d12430ead914385981805944e68c, type: 2}
   - {fileID: 11400000, guid: 135f3e7804fa80c4b993f95d4b9c0327, type: 2}
-  Name: SuperBurger
+  Name: Super Burger

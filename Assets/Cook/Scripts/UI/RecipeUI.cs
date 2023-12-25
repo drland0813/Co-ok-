@@ -2,36 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Drland.Cook
 {
-	public class DeliveryManagerSingleUI : MonoBehaviour
+	public class RecipeUI : MonoBehaviour
 	{
-		[SerializeField] private TextMeshProUGUI _recipeNameText;
-		[SerializeField] private Transform _iconTemplate;
+		[SerializeField] private IngredientUI _ingredientIconTemplate;
 		[SerializeField] private Transform _iconContainer;
 
 		private void Awake()
 		{
-			_iconTemplate.gameObject.SetActive(false);
+			_ingredientIconTemplate.gameObject.SetActive(false);
 		}
 
 		public void SetUpUI(RecipeSO recipeSO)
 		{
-			_recipeNameText.text = recipeSO.Name;
-
 			foreach (Transform child in _iconContainer)
 			{
-				if (child == _iconTemplate) continue;
+				if (child == _ingredientIconTemplate) continue;
 				Destroy(child.gameObject);
 			}
 
 			foreach (var kitchenObjectSO in recipeSO.KitchenObjectSOList)
 			{
-				var icon = Instantiate(_iconTemplate, _iconContainer);
+				var icon = Instantiate(_ingredientIconTemplate, _iconContainer);
 				icon.gameObject.SetActive(true);
-				icon.GetComponent<Image>().sprite = kitchenObjectSO.Sprite;
+				icon.SetupUI(kitchenObjectSO);
 			}
 		}
 	}

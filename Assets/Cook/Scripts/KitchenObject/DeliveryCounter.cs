@@ -8,7 +8,7 @@ namespace Drland.Cook
 	{
 		public override void Interact(PlayerController player)
 		{
-			if (player.HasKitchenObject()) return;
+			if (!player.HasKitchenObject()) return;
 
 			if (!player.GetKitchenObject().TryGetPlate(out var plateKitchenObject)) return;
 			DeliveryManager.Instance.DeliveryRecipe(plateKitchenObject);

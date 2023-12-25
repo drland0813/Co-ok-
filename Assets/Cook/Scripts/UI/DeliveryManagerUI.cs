@@ -46,7 +46,7 @@ namespace Drland.Cook
 
 			foreach (var recipeSO in DeliveryManager.Instance.GetWaitingRecipeSOList())
 			{
-				var recipeUI = Instantiate(_recipeTemplate, _recipeContainer).GetComponent<DeliveryManagerSingleUI>();
+				var recipeUI = Instantiate(_recipeTemplate, _recipeContainer).GetComponent<RecipeUI>();
 				recipeUI.SetUpUI(recipeSO);
 				recipeUI.gameObject.SetActive(true);
 			}

@@ -60,7 +60,7 @@ namespace Drland.Cook
 			if (!_kitchenObjectUI) return;
 			_kitchenObjectUI.Enable(enable);
 			if (!enable) return;
-			_kitchenObjectUI.SetKitchenObjectIcon(_kitchenObjectSO);
+			_kitchenObjectUI.SetupUI(_kitchenObjectSO);
 		}
 
 		public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)

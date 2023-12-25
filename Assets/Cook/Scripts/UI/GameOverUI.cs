@@ -13,20 +13,20 @@ namespace Drland.Cook
 		private void Start()
 		{
 			GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
-			// Hide();
+			Hide();
 		}
 
 		private void GameManager_OnStateChanged(object sender, EventArgs e)
 		{
-			// if (GameManager.Instance.IsGameOver())
-			// {
-			// 	Show();
-			// 	SetRecipeDeliveredText();
-			// }
-			// else
-			// {
-			// 	Hide();
-			// }
+			if (GameManager.Instance.IsGameOver())
+			{
+				Show();
+				SetRecipeDeliveredText();
+			}
+			else
+			{
+				Hide();
+			}
 		}
 
 		private void SetRecipeDeliveredText()
