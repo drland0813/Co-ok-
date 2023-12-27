@@ -2,45 +2,87 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Drland.Cook
 {
-	public class PlatesCounter : BaseCounter
+	public abstract class PlateHolderCounterBase : BaseCounter, IPlateHolder
 	{
-		public event EventHandler OnPlateSpawned;
-		public event EventHandler OnPlateRemoved; 
-
-
-		[SerializeField] private KitchenObjectSO _plateObjectSO;
-		[SerializeField] private float _spawnPlateTimerMax = 4f;
-		[SerializeField] private int _plateSpawnAmountMax = 4;
-
-		private float _spawnPlateTimer;
-		private float _plateSpawnedAmount;
-
-		private PlateKitchenObject _plateKitchenObject;
-
-		private void Start()
+		[SerializeField] protected int _plateSpawnAmountMax = 4;
+		[SerializeField] protected KitchenObjectSO _plateObjectSO;
+		protected PlateKitchenObject _plateKitchenObject;
+		protected int _plateSpawnedAmount;
+		protected void Start()
 		{
 			_plateKitchenObject = _plateObjectSO.Prefab.GetComponent<PlateKitchenObject>();
+		}
+		
+		protected void SpawnPlate()
+		{
+			_plateSpawnedAmount++;
+			OnPlateSpawned?.Invoke(this, EventArgs.Empty);
+		}
+		
+		protected void SpawnPlateWithIngredient(PlayerController player, KitchenObject ingredient)
+		{
+			_plateSpawnedAmount--;
+			var plateKitchenObject = KitchenObject.SpawnKitchenObject(_plateObjectSO, player).GetComponent<PlateKitchenObject>();
+			OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+			if (plateKitchenObject.TryAddIngredient(ingredient.GetKitchenObjectSO()))
+			{
+				Destroy(ingredient.gameObject);
+			}
+		}
+
+		protected void SpawnPlateToPlayer(PlayerController player)
+		{
+			_plateSpawnedAmount--;
+			KitchenObject.SpawnKitchenObject(_plateObjectSO, player);
+			OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+		}
+		public abstract override void Interact(PlayerController player);
+		public event EventHandler OnPlateSpawned;
+		public event EventHandler OnPlateRemoved;
+	}
+	
+	public class PlatesCounter : PlateHolderCounterBase
+	{
+
+		[SerializeField] private float _spawnPlateTimerMax = 4f;
+		[SerializeField] private bool _immediatelySpawn;
+		private float _spawnPlateTimer;
+
+		private new void Start()
+		{
+			base.Start();
 			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
 		private IEnumerator SpawnPlatesCoroutine()
 		{
-			while (_spawnPlateTimer < _spawnPlateTimerMax)
+			if (_immediatelySpawn)
 			{
-				_spawnPlateTimer += Time.deltaTime;
-				if (_spawnPlateTimer > _spawnPlateTimerMax)
+				for (var i = 0; i < _plateSpawnAmountMax; i++)
 				{
-					_spawnPlateTimer = 0f;
-					if (_plateSpawnedAmount < _plateSpawnAmountMax)
-					{
-						_plateSpawnedAmount++;
-						OnPlateSpawned?.Invoke(this, EventArgs.Empty);
-					}
+					SpawnPlate();
+					yield return null;
 				}
-				yield return null;
+			}
+			else
+			{
+				while (_spawnPlateTimer < _spawnPlateTimerMax)
+				{
+					_spawnPlateTimer += Time.deltaTime;
+					if (_spawnPlateTimer > _spawnPlateTimerMax)
+					{
+						_spawnPlateTimer = 0f;
+						if (_plateSpawnedAmount < _plateSpawnAmountMax)
+						{
+							SpawnPlate();
+						}
+					}
+					yield return null;
+				}
 			}
 		}
 
@@ -49,23 +91,14 @@ namespace Drland.Cook
 			if (!player.HasKitchenObject())
 			{
 				if (!(_plateSpawnedAmount > 0)) return;
-				_plateSpawnedAmount--;
-				KitchenObject.SpawnKitchenObject(_plateObjectSO, player);
-				OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+				SpawnPlateToPlayer(player);
 			}
 			else
 			{
 				var ingredient = player.GetKitchenObject();
 				if (!(_plateSpawnedAmount > 0)) return;
 				if (!_plateKitchenObject.CheckIngredientIsValid(ingredient.GetKitchenObjectSO())) return;
-
-				_plateSpawnedAmount--;
-				var plateKitchenObject = KitchenObject.SpawnKitchenObject(_plateObjectSO, player).GetComponent<PlateKitchenObject>();
-				OnPlateRemoved?.Invoke(this, EventArgs.Empty);
-				if (plateKitchenObject.TryAddIngredient(ingredient.GetKitchenObjectSO()))
-				{
-					Destroy(ingredient.gameObject);
-				};
+				SpawnPlateWithIngredient(player, ingredient);
 			}
 		}
 	}

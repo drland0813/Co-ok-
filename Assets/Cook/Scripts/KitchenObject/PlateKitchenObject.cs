@@ -12,14 +12,23 @@ namespace Drland.Cook
 		{
 			public KitchenObjectSO KitchenObjectSO;
 		}
+		
+		[Header("Visual")]
+		[SerializeField] private Material _dirtyMaterial;
+		[SerializeField] private MeshRenderer _meshRenderer;
+
 
 		[SerializeField] private List<KitchenObjectSO> _validKitchenObjectSOList;
 
 		private List<KitchenObjectSO> _kitchenObjectSOList;
 
+		[SerializeField] private bool _isDirty;
+		private Material _cleanMaterial;
+
 		private void Awake()
 		{
 			_kitchenObjectSOList = new List<KitchenObjectSO>();
+			_cleanMaterial = _meshRenderer.sharedMaterial;
 		}
 
 		public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO)
@@ -40,10 +49,21 @@ namespace Drland.Cook
 			});
 			return true;
 		}
-		
+
+		private void Update()
+		{
+			SetDirtyVisual(_isDirty);
+		}
+
 		public bool CheckIngredientIsValid(KitchenObjectSO kitchenObjectSO)
 		{
 			return _validKitchenObjectSOList.Contains(kitchenObjectSO);
+		}
+
+		public void SetDirtyVisual(bool enable)
+		{
+			var plateMaterial = enable ? _dirtyMaterial : _cleanMaterial;
+			_meshRenderer.sharedMaterial = plateMaterial;
 		}
 
 

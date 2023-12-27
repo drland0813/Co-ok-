@@ -160,8 +160,8 @@ namespace Drland.Cook
 				SelectedCounter = selectedCounter
 			});
 
-			bool isInteractCuttingCounter = selectedCounter as CuttingCounter;
-			_playerUI.EnableInteractAlternateButton(isInteractCuttingCounter);
+			var enableInteractAlternateButton = selectedCounter as CuttingCounter || selectedCounter as SinkCounter;
+			_playerUI.EnableInteractAlternateButton(enableInteractAlternateButton);
 
 		}
 

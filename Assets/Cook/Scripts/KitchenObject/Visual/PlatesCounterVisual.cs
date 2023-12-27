@@ -5,38 +5,42 @@ using UnityEngine;
 
 namespace Drland.Cook
 {
-	public class PlatesCounterVisual : MonoBehaviour
+	public abstract class PlatesCounterVisualBase : MonoBehaviour
 	{
-		[SerializeField] private Transform _counterTopPoint;
-		[SerializeField] private Transform _plateVisualPrefab;
-
-		[SerializeField] private PlatesCounter _platesCounter;
-
-		private List<GameObject> _plateVisualObjectList;
-
-		private void Awake()
+		[SerializeField] protected Transform _counterTopPoint;
+		[SerializeField] protected Transform _plateVisualPrefab;
+		[SerializeField] protected PlateHolderCounterBase _platesCounter;
+		
+		protected List<GameObject> _plateVisualObjectList;
+		protected void Awake()
 		{
-			_plateVisualObjectList = new();
+			_plateVisualObjectList = new List<GameObject>();
+		}
+		
+		protected void Start()
+		{
+			_platesCounter.OnPlateSpawned += OnPlateSpawned;
+			_platesCounter.OnPlateRemoved += OnPlateRemoved;
 		}
 
-		private void Start()
-		{
-			_platesCounter.OnPlateSpawned += PlatesCounter_OnPlateSpawned;
-			_platesCounter.OnPlateRemoved += PlatesCounter_OnPlateRemoved;
-		}
+		protected abstract void OnPlateSpawned(object sender, EventArgs eventArgs);
+		protected abstract void OnPlateRemoved(object sender, EventArgs eventArgs);
 
-		private void PlatesCounter_OnPlateRemoved(object sender, EventArgs e)
+	}
+	public class PlatesCounterVisual : PlatesCounterVisualBase
+	{
+		protected override void OnPlateRemoved(object sender, EventArgs e)
 		{
-			GameObject plateOnTop = _plateVisualObjectList[_plateVisualObjectList.Count - 1];
+			GameObject plateOnTop = _plateVisualObjectList[^1];
 			_plateVisualObjectList.Remove(plateOnTop);
 			Destroy(plateOnTop);
 		}
 
-		private void PlatesCounter_OnPlateSpawned(object sender, EventArgs e)
+		protected override void OnPlateSpawned(object sender, EventArgs e)
 		{
-			Transform plateTransform = Instantiate(_plateVisualPrefab, _counterTopPoint);
+			var plateTransform = Instantiate(_plateVisualPrefab, _counterTopPoint);
 
-			float plateOffsetY = 0.1f;
+			var plateOffsetY = 0.1f;
 			plateTransform.localPosition = new Vector3(0, plateOffsetY * _plateVisualObjectList.Count, 0);
 
 			_plateVisualObjectList.Add(plateTransform.gameObject);
