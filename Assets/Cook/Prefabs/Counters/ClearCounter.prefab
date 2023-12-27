@@ -222,6 +222,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2546299157552804775, guid: bd7711cf04864684f808153a57d51a5c,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546299157552804775, guid: bd7711cf04864684f808153a57d51a5c,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2546299157552804775, guid: bd7711cf04864684f808153a57d51a5c,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 2871667357964198539, guid: bd7711cf04864684f808153a57d51a5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -313,7 +328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterTopPoint: {fileID: 7665629606359466367}
-  _kitcjhenObjectSO: {fileID: 11400000, guid: 87400fe2fdce00543a58018adb183ecb, type: 2}
 --- !u!4 &7665629606359466367 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2546299157552804775, guid: bd7711cf04864684f808153a57d51a5c,

@@ -334,9 +334,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _counterTopPoint: {fileID: 6013601087270884426}
+  _plateSpawnAmountMax: 4
   _plateObjectSO: {fileID: 11400000, guid: cdeb9d8ba719b154bb2a0e2e87ae7343, type: 2}
   _spawnPlateTimerMax: 4
-  _spawnPlatesAmountMax: 4
+  _immediatelySpawn: 1
 --- !u!4 &6013601087270884426 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2546299157552804775, guid: bd7711cf04864684f808153a57d51a5c,
