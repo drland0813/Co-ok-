@@ -460,6 +460,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactButton: {fileID: 1919773594}
   _interactAlternateButton: {fileID: 925027645}
+  _interactAlternateButtonIcon: {fileID: 593422441}
+  _uiActions:
+  - Type: 0
+    Icon: {fileID: 21300000, guid: 3cdb4db81c4a5fd4d969768019c86043, type: 3}
+  - Type: 1
+    Icon: {fileID: 21300000, guid: 8b018ad85d36c7d4a86458e417717889, type: 3}
+  - Type: 2
+    Icon: {fileID: 21300000, guid: 81ce08fd5b47f1d4b863ae2704235c7e, type: 3}
 --- !u!114 &134486187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1072,6 +1080,89 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 612714591}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &405360445
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.511
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.253
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061225756663859473, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: _immediatelySpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061225756663859473, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: _spawnPlateTimerMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061225756663859473, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: _plateSpawnAmountMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500864454418950272, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_Name
+      value: DirtyPlatesCounter (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46b2aa7ae2d772a449df114da6f079c2, type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,6 +1534,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464272030506295120, guid: d70cdf9e07eb7fd4fb29d8beb1336e23,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464272030506295120, guid: d70cdf9e07eb7fd4fb29d8beb1336e23,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8464272030506295120, guid: d70cdf9e07eb7fd4fb29d8beb1336e23,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1846,7 +1952,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3cdb4db81c4a5fd4d969768019c86043, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 81ce08fd5b47f1d4b863ae2704235c7e, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -3084,7 +3190,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: -165, y: 310}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &925027645
 MonoBehaviour:
@@ -3320,7 +3426,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: c420e39114cd3344ba63e5a59c46bb53, type: 3}
   m_Type: 0
-  m_PreserveAspect: 0
+  m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
   m_FillAmount: 1
@@ -4662,6 +4768,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DirtyPlatesCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500864454418950272, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10195,4 +10306,5 @@ SceneRoots:
   - {fileID: 134486185}
   - {fileID: 1065418522}
   - {fileID: 1376335559}
+  - {fileID: 405360445}
   - {fileID: 467577293}

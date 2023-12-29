@@ -31,7 +31,9 @@ namespace Drland.Cook
 	{
 		protected override void OnPlateRemoved(object sender, EventArgs e)
 		{
-			GameObject plateOnTop = _plateVisualObjectList[^1];
+			if (_plateVisualObjectList.Count == 0) return;
+
+			var plateOnTop = _plateVisualObjectList[^1];
 			_plateVisualObjectList.Remove(plateOnTop);
 			Destroy(plateOnTop);
 		}

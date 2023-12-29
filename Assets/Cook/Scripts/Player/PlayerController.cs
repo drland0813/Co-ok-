@@ -128,6 +128,7 @@ namespace Drland.Cook
 			{
 				if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
 				{
+					_playerUI.EnableInteractButton(true);
 					if (baseCounter != _selectedCounter)
 					{
 						SetSelectedCounter(baseCounter);
@@ -135,11 +136,13 @@ namespace Drland.Cook
 				}
 				else
 				{
+					_playerUI.EnableInteractButton(false);
 					SetSelectedCounter(null);
 				}
 			}
 			else
 			{
+				_playerUI.EnableInteractButton(false);
 				SetSelectedCounter(null);
 			}
 		}
@@ -168,7 +171,9 @@ namespace Drland.Cook
 			});
 
 			var enableInteractAlternateButton = selectedCounter as CuttingCounter || selectedCounter as SinkCounter;
-			_playerUI.EnableInteractAlternateButton(enableInteractAlternateButton);
+
+			var actionType = selectedCounter is CuttingCounter ? UIActionType.Cut : UIActionType.Wash;
+			_playerUI.EnableInteractAlternateButton(enableInteractAlternateButton, actionType);
 
 		}
 
