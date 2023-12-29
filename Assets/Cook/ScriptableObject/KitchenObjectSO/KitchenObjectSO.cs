@@ -25,6 +25,7 @@ namespace Drland.Cook
 		Meat,
 		Bread,
 		Plate,
-		Knife
+		Knife,
+		DirtyPlateStack
 	}
 }

@@ -22,6 +22,12 @@ namespace Drland.Cook
 			_plateSpawnedAmount++;
 			OnPlateSpawned?.Invoke(this, EventArgs.Empty);
 		}
+
+		protected void RemovePlate()
+		{
+			_plateSpawnedAmount--;
+			OnPlateRemoved?.Invoke(this, EventArgs.Empty);
+		}
 		
 		protected void SpawnPlateWithIngredient(PlayerController player, KitchenObject ingredient)
 		{
@@ -48,17 +54,17 @@ namespace Drland.Cook
 	public class PlatesCounter : PlateHolderCounterBase
 	{
 
-		[SerializeField] private float _spawnPlateTimerMax = 4f;
-		[SerializeField] private bool _immediatelySpawn;
-		private float _spawnPlateTimer;
+		[SerializeField] protected float _spawnPlateTimerMax = 4f;
+		[SerializeField] protected bool _immediatelySpawn;
+		protected float _spawnPlateTimer;
 
-		private new void Start()
+		protected new void Start()
 		{
 			base.Start();
 			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
-		private IEnumerator SpawnPlatesCoroutine()
+		protected virtual IEnumerator SpawnPlatesCoroutine()
 		{
 			if (_immediatelySpawn)
 			{

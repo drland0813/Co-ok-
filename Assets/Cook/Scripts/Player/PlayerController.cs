@@ -45,6 +45,14 @@ namespace Drland.Cook
 		private KitchenObject _currentKitchenObject;
 		private KitchenObjectDataRigging _kitchenObjectDataRigging;
 
+		private bool _isHolding;
+
+		public bool IsHolding
+		{
+			get => _isHolding;
+			set => _isHolding = value;
+		}
+
 
 		private void Awake()
 		{
@@ -103,7 +111,9 @@ namespace Drland.Cook
 			{
 				transform.position += moveDir * moveDistance;
 			}
-			transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * _rotateSpeed);
+			var forwardVector =  Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * _rotateSpeed);
+			if (forwardVector == Vector3.zero) return;
+			transform.forward = forwardVector;
 		}
 
 		private void HandleInteractions()
@@ -141,10 +151,11 @@ namespace Drland.Cook
 			_selectedCounter?.Interact(this);
 		}
 
-		private void OnHandeInteractAlternate()
+		private void OnHandeInteractAlternate(bool isHolding = false)
 		{
 			if (!GameManager.Instance.IsGamePlaying()) return;
 
+			_isHolding = isHolding;
 			_selectedCounter?.InteractAlternate(this);
 		}
 

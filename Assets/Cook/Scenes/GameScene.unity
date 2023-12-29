@@ -284,11 +284,23 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6716819264318460698, guid: 31d8b12f4efce0847931c353e41bdb68,
+        type: 3}
+      propertyPath: _plateVisualPrefab
+      value: 
+      objectReference: {fileID: 4443347904714381249, guid: bcfa4def19dc2764bb198ec3c56ecf56,
+        type: 3}
     - target: {fileID: 8262598202734521169, guid: 31d8b12f4efce0847931c353e41bdb68,
         type: 3}
       propertyPath: _autoSpawn
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8262598202734521169, guid: 31d8b12f4efce0847931c353e41bdb68,
+        type: 3}
+      propertyPath: _plateObjectSO
+      value: 
+      objectReference: {fileID: 11400000, guid: cdeb9d8ba719b154bb2a0e2e87ae7343,
+        type: 2}
     - target: {fileID: 8262598202734521169, guid: 31d8b12f4efce0847931c353e41bdb68,
         type: 3}
       propertyPath: _plateSpawnAmountMax
@@ -388,7 +400,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86a9559b4bd7c504996ee11c1b41fa8a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 7
+  _moveSpeed: 5
   _rotateSpeed: 20
   _interactRadius: 0.7
   _interactDistance: 2
@@ -415,6 +427,8 @@ MonoBehaviour:
     Holder: {fileID: 619174233}
   - Type: 5
     Holder: {fileID: 2092396465}
+  - Type: 10
+    Holder: {fileID: 376882247}
   _rigBuilder: {fileID: 5286327688109571751}
 --- !u!4 &134486185
 Transform:
@@ -2976,6 +2990,7 @@ GameObject:
   - component: {fileID: 925027647}
   - component: {fileID: 925027646}
   - component: {fileID: 925027645}
+  - component: {fileID: 925027648}
   m_Layer: 5
   m_Name: InteractAlternateButton
   m_TagString: Untagged
@@ -3085,6 +3100,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 925027643}
   m_CullTransparentMesh: 1
+--- !u!114 &925027648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 925027643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/f
 --- !u!4 &934449845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780156670479534622, guid: 1c932136e3f9488419098fc81675fd1d,
@@ -4499,6 +4527,79 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1682970201}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1376335559
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2999447993778228619, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5061225756663859473, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: _plateSpawnAmountMax
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6500864454418950272, guid: 46b2aa7ae2d772a449df114da6f079c2,
+        type: 3}
+      propertyPath: m_Name
+      value: DirtyPlatesCounter
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 46b2aa7ae2d772a449df114da6f079c2, type: 3}
 --- !u!4 &1408430019 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 780156670479534622, guid: 1c932136e3f9488419098fc81675fd1d,
@@ -5028,6 +5129,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 376882247}
+  - {fileID: 2039823531}
   - {fileID: 220338814}
   - {fileID: 1293421111}
   - {fileID: 1656114857}
@@ -5827,7 +5929,7 @@ PrefabInstance:
     - target: {fileID: 2590857449418078708, guid: d70cdf9e07eb7fd4fb29d8beb1336e23,
         type: 3}
       propertyPath: _washingProgressMax
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5753190799848489725, guid: d70cdf9e07eb7fd4fb29d8beb1336e23,
         type: 3}
@@ -6122,6 +6224,7 @@ GameObject:
   - component: {fileID: 1919773596}
   - component: {fileID: 1919773595}
   - component: {fileID: 1919773594}
+  - component: {fileID: 1919773598}
   m_Layer: 5
   m_Name: InteractButton
   m_TagString: Untagged
@@ -6231,6 +6334,19 @@ RectTransform:
   m_AnchoredPosition: {x: -200, y: 127}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 1, y: 0}
+--- !u!114 &1919773598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1919773593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/e
 --- !u!4 &1980662739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: bea90dcee86b51e478d27a705158c5b7,
@@ -6338,6 +6454,37 @@ Transform:
   - {fileID: 1899276459}
   m_Father: {fileID: 1323052056}
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &2039823530
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039823531}
+  m_Layer: 0
+  m_Name: DirtyPlateHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2039823531
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039823530}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.061048605, y: 0, z: 0, w: 0.99813485}
+  m_LocalPosition: {x: 0, y: 0, z: 0.314}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1682970201}
+  m_LocalEulerAnglesHint: {x: -7, y: 0, z: 0}
 --- !u!1 &2060001549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10053,3 +10200,4 @@ SceneRoots:
   - {fileID: 134486185}
   - {fileID: 1065418522}
   - {fileID: 1846473981}
+  - {fileID: 1376335559}

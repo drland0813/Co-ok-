@@ -23,14 +23,11 @@ namespace Drland.Cook
         {
             base.Start();
             var sinkCounter = _platesCounter as SinkCounter;
-            if (sinkCounter != null) sinkCounter.OnDropDirtyPlates += OnDropDirtyPlates;
-            
-            TestDirtyPlates();
+            if (sinkCounter != null) sinkCounter.OnDirtyPlateSpawned += OnDirtyPlateSpawned;
         }
-
-        private void TestDirtyPlates()
+        private void OnDirtyPlateSpawned(object sender, SinkCounter.OnDirtyPlateSpawnedAgrs e)
         {
-            for (int i = 0; i < 4; i++)
+            for (var i = 0; i < e.TotalPlate; i++)
             {
                 var plateTransform = Instantiate(_dirtyPlateVisualPrefab, _washingPoint);
 
@@ -38,19 +35,6 @@ namespace Drland.Cook
                 plateTransform.localPosition = new Vector3(offset * _dirtyPlateVisualObjectList.Count, offset * _dirtyPlateVisualObjectList.Count, 0);
 
                 _dirtyPlateVisualObjectList.Add(plateTransform.gameObject);
-            }
-        }
-
-        private void OnDropDirtyPlates(object sender, SinkCounter.OnDropDirtyPlatesAgrs e)
-        {
-            for (var i = 0; i < e.TotalPlate; i++)
-            {
-                var dirtyPlateTransform = Instantiate(_dirtyPlateVisualPrefab, _washingPoint);
-
-                var plateOffsetY = 0.1f;
-                dirtyPlateTransform.localPosition = new Vector3(0, plateOffsetY * _plateVisualObjectList.Count, 0);
-
-                _dirtyPlateVisualObjectList.Add(dirtyPlateTransform.gameObject);
             }
         }
 
@@ -62,7 +46,7 @@ namespace Drland.Cook
                 _dirtyPlateVisualObjectList.Remove(dirtyPlateOnTop);
                 Destroy(dirtyPlateOnTop);
             }
-            
+
             var plateTransform = Instantiate(_plateVisualPrefab, _counterTopPoint);
             var plateOffsetY = 0.1f;
             plateTransform.localPosition = new Vector3(0, plateOffsetY * _plateVisualObjectList.Count, 0);

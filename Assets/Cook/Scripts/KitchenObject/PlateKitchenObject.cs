@@ -23,12 +23,20 @@ namespace Drland.Cook
 		private List<KitchenObjectSO> _kitchenObjectSOList;
 
 		[SerializeField] private bool _isDirty;
+
+		public bool IsDirty => _isDirty;
+
 		private Material _cleanMaterial;
 
 		private void Awake()
 		{
 			_kitchenObjectSOList = new List<KitchenObjectSO>();
 			_cleanMaterial = _meshRenderer.sharedMaterial;
+		}
+
+		private void Start()
+		{
+			SetDirtyVisual(_isDirty);
 		}
 
 		public bool TryAddIngredient(KitchenObjectSO kitchenObjectSO)
@@ -50,17 +58,12 @@ namespace Drland.Cook
 			return true;
 		}
 
-		private void Update()
-		{
-			SetDirtyVisual(_isDirty);
-		}
-
 		public bool CheckIngredientIsValid(KitchenObjectSO kitchenObjectSO)
 		{
 			return _validKitchenObjectSOList.Contains(kitchenObjectSO);
 		}
 
-		public void SetDirtyVisual(bool enable)
+		private void SetDirtyVisual(bool enable)
 		{
 			var plateMaterial = enable ? _dirtyMaterial : _cleanMaterial;
 			_meshRenderer.sharedMaterial = plateMaterial;

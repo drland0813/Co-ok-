@@ -13,7 +13,7 @@ namespace Drland.Cook
 		private PlayerAction _inputActions;
 		
 		private Action _onInteractObject;
-		private Action _onInteractAlternateObject;
+		private Action<bool> _onInteractAlternateObject;
 
 		private void Awake()
 		{
@@ -21,6 +21,7 @@ namespace Drland.Cook
 			_inputActions.Player.Enable();
 			_inputActions.Player.Interact.performed += InteractPerformed;
 			_inputActions.Player.InteractAlternate.performed += InteractAlternatePerformed;
+			_inputActions.Player.InteractAlternate.canceled += InteractAlternateCancel;
 		}
 
 		private void InteractPerformed(InputAction.CallbackContext obj)
@@ -29,7 +30,12 @@ namespace Drland.Cook
 		}
 		private void InteractAlternatePerformed(InputAction.CallbackContext obj)
 		{
-			_onInteractAlternateObject?.Invoke();
+			_onInteractAlternateObject?.Invoke(obj.performed);
+		}
+		
+		private void InteractAlternateCancel(InputAction.CallbackContext obj)
+		{
+			_onInteractAlternateObject?.Invoke(obj.performed);
 		}
 
 		public Vector2 GetMovementVectorNormalized()
@@ -52,7 +58,7 @@ namespace Drland.Cook
 			_onInteractObject = interactObjectAction;
 		}
 
-		public void RegisterInteractAlternateObjectCallback(Action interactAlternateObjectAction)
+		public void RegisterInteractAlternateObjectCallback(Action<bool> interactAlternateObjectAction)
 		{
 			_onInteractAlternateObject = interactAlternateObjectAction;
 		}
