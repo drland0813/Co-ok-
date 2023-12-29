@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 
 namespace Drland.Cook
 {
@@ -33,18 +34,17 @@ namespace Drland.Cook
 
 		public Vector2 GetMovementVectorNormalized()
 		{
-
-			var inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
-            
+			var inputVector = new Vector2();
 #if  UNITY_EDITOR
 			inputVector = _inputActions.Player.PCMove.ReadValue<Vector2>();
+#else
+			inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
 #endif
 			if (!GameManager.Instance.IsGamePlaying())
 			{
 				inputVector = Vector2.zero;
 			}
 			return inputVector.normalized;
-
 		}
 
 		public void RegisterInteractObjectCallback(Action interactObjectAction)

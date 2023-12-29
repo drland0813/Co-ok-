@@ -55,13 +55,9 @@ namespace Drland.Cook
 				Debug.LogError("There is more than one Player instance");
 			}
 			Instance = this;
-			_playerUI.RegisterInteractObjectCallback(OnHandleInteractions);
-			_playerUI.RegisterInteractAlternateObjectCallback(OnHandeInteractAlternate);
-
-#if UNITY_EDITOR
 			_gameInput.RegisterInteractObjectCallback(OnHandleInteractions);
 			_gameInput.RegisterInteractAlternateObjectCallback(OnHandeInteractAlternate);
-#endif
+
 		}
 
 		private void Update()

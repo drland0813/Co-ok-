@@ -11,33 +11,10 @@ namespace Drland.Cook
 	{
 		[SerializeField] private Button _interactButton;
 		[SerializeField] private Button _interactAlternateButton;
-
-
-		private Action _onInteractObject;
-		private Action _onInteractAlternateObject;
-
-
-		private void Awake()
+		
+		public void EnableInteractButton(bool enable)
 		{
-			_interactButton.onClick.AddListener(() =>
-			{
-				_onInteractObject?.Invoke();
-			});
-
-			_interactAlternateButton.onClick.AddListener(() =>
-			{
-				_onInteractAlternateObject?.Invoke();
-			});
-		}
-
-		public void RegisterInteractObjectCallback(Action interactObjectAction)
-		{
-			_onInteractObject = interactObjectAction;
-		}
-
-		public void RegisterInteractAlternateObjectCallback(Action interactAlternateObjectAction)
-		{
-			_onInteractAlternateObject = interactAlternateObjectAction;
+			_interactButton.gameObject.SetActive(enable);
 		}
 
 		public void EnableInteractAlternateButton(bool enable)
@@ -45,5 +22,4 @@ namespace Drland.Cook
 			_interactAlternateButton.gameObject.SetActive(enable);
 		}
 	}
-
 }
