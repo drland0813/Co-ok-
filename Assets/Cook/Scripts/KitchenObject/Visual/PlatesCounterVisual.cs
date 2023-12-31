@@ -17,7 +17,7 @@ namespace Drland.Cook
 			_plateVisualObjectList = new List<GameObject>();
 		}
 		
-		protected void Start()
+		protected virtual void OnEnable()
 		{
 			_platesCounter.OnPlateSpawned += OnPlateSpawned;
 			_platesCounter.OnPlateRemoved += OnPlateRemoved;
@@ -44,7 +44,6 @@ namespace Drland.Cook
 
 			var plateOffsetY = 0.1f;
 			plateTransform.localPosition = new Vector3(0, plateOffsetY * _plateVisualObjectList.Count, 0);
-
 			_plateVisualObjectList.Add(plateTransform.gameObject);
 		}
 	}

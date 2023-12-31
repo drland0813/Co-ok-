@@ -30,7 +30,7 @@ namespace Drland.Cook
 		[SerializeField] private List<UIAction> _uiActions;
 		public void EnableInteractButton(bool enable)
 		{
-			_interactButton.gameObject.SetActive(enable);
+			// _interactButton.gameObject.SetActive(enable);
 		}
 
 		public void EnableInteractAlternateButton(bool enable, UIActionType type)

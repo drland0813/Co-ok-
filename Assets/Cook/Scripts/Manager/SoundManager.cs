@@ -16,7 +16,7 @@ namespace Drland.Cook
 		Warning
 	}
 
-	public class SoundManager : PersistentSingleton<SoundManager>
+	public class SoundManager : Singleton<SoundManager>
 	{
 
 		[SerializeField] private AudioClipRefSO _audioClipRefSO;

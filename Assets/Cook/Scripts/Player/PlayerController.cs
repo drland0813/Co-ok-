@@ -22,7 +22,8 @@ namespace Drland.Cook
 		[Header("Movement")]
 		[SerializeField] private float _moveSpeed;
 		[SerializeField] private float _rotateSpeed;
-		
+		[SerializeField] private float _limitMoveValue;
+
 		[Header("Interact")]
 		[SerializeField] private float _interactRadius;
 		[SerializeField] private float _interactDistance;
@@ -70,6 +71,8 @@ namespace Drland.Cook
 
 		private void Update()
 		{
+			_testRigging.Enable(_isHolding);
+			
 			HandleMovement();
 			HandleInteractions();
 		}
@@ -78,19 +81,21 @@ namespace Drland.Cook
 		{
 			var inputVector = _gameInput.GetMovementVectorNormalized();
 			var moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
-
 			var moveDistance = _moveSpeed * Time.deltaTime;
 
 			var position = transform.position;
 			var canMove = !Physics.CapsuleCast(position, position + Vector3.up * _height, _interactRadius, moveDir, moveDistance);
 
 			_isWalking = moveDir != Vector3.zero;
+			if (_isWalking)
+			{
+				_isHolding = false;
+			}
 
 			if (!canMove)
 			{
 				var moveDirX = new Vector3(moveDir.x, 0, 0);
-				canMove = moveDir.x != 0 && !Physics.CapsuleCast(position, position + Vector3.up * _height, _interactRadius, moveDirX, moveDistance);
-
+				canMove = (moveDir.x <-_limitMoveValue || moveDir.x > _limitMoveValue) && !Physics.CapsuleCast(position, position + Vector3.up * _height, _interactRadius, moveDirX, moveDistance);
 				if (canMove)
 				{
 					moveDir = moveDirX;
@@ -98,8 +103,8 @@ namespace Drland.Cook
 				else
 				{
 					var moveDirZ = new Vector3(0, 0, moveDir.z);
-					canMove = moveDir.z != 0 && !Physics.CapsuleCast(position, position + Vector3.up * _height, _interactRadius, moveDirZ, moveDistance);
-
+					canMove = (moveDir.z <-_limitMoveValue || moveDir.x > _limitMoveValue) && !Physics.CapsuleCast(position, position + Vector3.up * _height, _interactRadius, moveDirZ, moveDistance);
+			
 					if (canMove)
 					{
 						moveDir = moveDirZ;

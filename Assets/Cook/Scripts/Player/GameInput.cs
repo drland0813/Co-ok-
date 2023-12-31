@@ -46,6 +46,8 @@ namespace Drland.Cook
 #else
 			inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
 #endif
+			// inputVector = new Vector2(_joyStick.Horizontal, _joyStick.Vertical);
+
 			if (!GameManager.Instance.IsGamePlaying())
 			{
 				inputVector = Vector2.zero;

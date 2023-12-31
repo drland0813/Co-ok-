@@ -16,33 +16,6 @@ namespace Drland.Cook
 				RemovePlate();
 			}
 		}
-		protected override IEnumerator SpawnPlatesCoroutine()
-		{
-			if (_immediatelySpawn)
-			{
-				for (var i = 0; i < _plateSpawnAmountMax; i++)
-				{
-					SpawnPlate();
-					yield return null;
-				}
-			}
-			else
-			{
-				while (_spawnPlateTimer < _spawnPlateTimerMax)
-				{
-					_spawnPlateTimer += Time.deltaTime;
-					if (_spawnPlateTimer > _spawnPlateTimerMax)
-					{
-						_spawnPlateTimer = 0f;
-						if (_plateSpawnedAmount < _plateSpawnAmountMax)
-						{
-							SpawnPlate();
-						}
-					}
-					yield return null;
-				}
-			}
-		}
 
 		public override void Interact(PlayerController player)
 		{

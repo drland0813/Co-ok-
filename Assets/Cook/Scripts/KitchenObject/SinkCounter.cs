@@ -58,14 +58,17 @@ namespace Drland.Cook
 
         public override void InteractAlternate(PlayerController player)
         {
-            if (player.HasKitchenObject()) return;
+            if (_dirtyPlatesCount == 0 || player.HasKitchenObject())
+            {
+                player.IsHolding = false;
+                return;
+            }
 
             if (!player.IsHolding)
             {
                 _washingProgress = _washingProgress > _washingProgressMax ? 0 : _washingProgress;
                 return;
             }
-            if (_dirtyPlatesCount == 0) return;
             StartCoroutine(WashingCoroutine(player));
         }
 

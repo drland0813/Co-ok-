@@ -12,7 +12,7 @@ namespace Drland.Cook
 		[SerializeField] protected KitchenObjectSO _plateObjectSO;
 		protected PlateKitchenObject _plateKitchenObject;
 		protected int _plateSpawnedAmount;
-		protected void Start()
+		protected void Awake()
 		{
 			_plateKitchenObject = _plateObjectSO.Prefab.GetComponent<PlateKitchenObject>();
 		}
@@ -20,7 +20,7 @@ namespace Drland.Cook
 		protected void SpawnPlate()
 		{
 			_plateSpawnedAmount++;
-			OnPlateSpawned?.Invoke(this, EventArgs.Empty);
+			OnPlateSpawned.Invoke(this, EventArgs.Empty);
 		}
 
 		protected void RemovePlate()
@@ -56,15 +56,14 @@ namespace Drland.Cook
 
 		[SerializeField] protected float _spawnPlateTimerMax = 4f;
 		[SerializeField] protected bool _immediatelySpawn;
-		protected float _spawnPlateTimer;
+		private float _spawnPlateTimer;
 
-		protected new void Start()
+		protected void Start()
 		{
-			base.Start();
 			StartCoroutine(SpawnPlatesCoroutine());
 		}
 
-		protected virtual IEnumerator SpawnPlatesCoroutine()
+		private IEnumerator SpawnPlatesCoroutine()
 		{
 			if (_immediatelySpawn)
 			{

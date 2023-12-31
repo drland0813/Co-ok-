@@ -19,9 +19,9 @@ namespace Drland.Cook
             _dirtyPlateVisualObjectList = new List<GameObject>();
         }
 
-        private new void Start()
+        protected override void OnEnable()
         {
-            base.Start();
+            base.OnEnable();
             var sinkCounter = _platesCounter as SinkCounter;
             if (sinkCounter != null) sinkCounter.OnDirtyPlateSpawned += OnDirtyPlateSpawned;
         }
