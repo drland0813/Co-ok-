@@ -8,17 +8,17 @@ using UnityEngine.UI;
 
 namespace Drland.Cook
 {
-	public enum UIActionType
+	public enum PlayerActionType
 	{
+		Hold,
 		Cut,
 		Wash,
-		Cook
 	}
 
 	[Serializable]
 	public class UIAction
 	{
-		public UIActionType Type;
+		public PlayerActionType Type;
 		public Sprite Icon;
 	}
 	public class PlayerUI : MonoBehaviour
@@ -33,7 +33,7 @@ namespace Drland.Cook
 			// _interactButton.gameObject.SetActive(enable);
 		}
 
-		public void EnableInteractAlternateButton(bool enable, UIActionType type)
+		public void EnableInteractAlternateButton(bool enable, PlayerActionType type)
 		{
 			_interactAlternateButton.gameObject.SetActive(enable);
 			var sprite = _uiActions.FirstOrDefault(t => t.Type == type)?.Icon;

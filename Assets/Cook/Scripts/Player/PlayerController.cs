@@ -32,19 +32,15 @@ namespace Drland.Cook
 
 		[SerializeField] private GameInput _gameInput;
 		[SerializeField] private PlayerUI _playerUI;
-		
-		[Header("Animation Rigging")]		
-		[SerializeField] private ArmsRiggingController _armsRiggingController;
-		[SerializeField] private List<KitchenObjectHolder> _kitchenObjectHolderList;
-		[SerializeField] private RigBuilder _rigBuilder;
 
+		[Header("Animation Rigging")] 
+		[SerializeField] private RigActionManager _rigActionManager;
+		[SerializeField] private List<KitchenObjectHolder> _kitchenObjectHolderList;
 
 		private bool _isWalking;
 		private Vector3 _lastInteractPosition;
 		private BaseCounter _selectedCounter;
-
 		private KitchenObject _currentKitchenObject;
-		private KitchenObjectDataRigging _kitchenObjectDataRigging;
 
 		private bool _isHolding;
 
@@ -71,8 +67,7 @@ namespace Drland.Cook
 
 		private void Update()
 		{
-			_testRigging.Enable(_isHolding);
-			
+			HandleAnimationRigging();
 			HandleMovement();
 			HandleInteractions();
 		}
@@ -152,6 +147,11 @@ namespace Drland.Cook
 			}
 		}
 
+		private void HandleAnimationRigging()
+		{
+			_rigActionManager.Enable(PlayerActionType.Wash, _isHolding);
+		}
+
 		private void OnHandleInteractions()
 		{
 			if (!GameManager.Instance.IsGamePlaying()) return;
@@ -177,7 +177,7 @@ namespace Drland.Cook
 
 			var enableInteractAlternateButton = selectedCounter as CuttingCounter || selectedCounter as SinkCounter;
 
-			var actionType = selectedCounter is CuttingCounter ? UIActionType.Cut : UIActionType.Wash;
+			var actionType = selectedCounter is CuttingCounter ? PlayerActionType.Cut : PlayerActionType.Wash;
 			_playerUI.EnableInteractAlternateButton(enableInteractAlternateButton, actionType);
 
 		}
@@ -188,21 +188,7 @@ namespace Drland.Cook
 			var kitchenObjectHolder = _kitchenObjectHolderList.FirstOrDefault(k => k.Type == type);
 			return kitchenObjectHolder.Holder;
 		}
-
-		private void EnableAnimationRigging(bool enable)
-		{
-			_rigBuilder.enabled = false;
-			if (!enable)
-			{
-				_armsRiggingController.DisableArmsRigging();
-			}
-			else
-			{
-				_kitchenObjectDataRigging = _currentKitchenObject.GetKitchenObjectDataRigging();
-				_armsRiggingController.EnableArmsRigging(_kitchenObjectDataRigging);
-			}
-			_rigBuilder.enabled = true;
-		}
+		
 
 		public bool IsWalking()
 		{
@@ -217,7 +203,7 @@ namespace Drland.Cook
 		public void SetKitchenObject(KitchenObject kitchenObject)
 		{
 			_currentKitchenObject = kitchenObject;
-			EnableAnimationRigging(true);
+			_rigActionManager.Enable(PlayerActionType.Hold ,true);
 			if (kitchenObject)
 				SoundManager.Instance.PlaySound(SoundType.ObjectPickup, transform);
 		}
@@ -230,8 +216,7 @@ namespace Drland.Cook
 		public void ClearKitchenObject()
 		{
 			_currentKitchenObject = null;
-			_kitchenObjectDataRigging = null;
-			EnableAnimationRigging(false);
+			_rigActionManager.Enable(PlayerActionType.Hold ,false);
 		}
 
 		public bool HasKitchenObject()
