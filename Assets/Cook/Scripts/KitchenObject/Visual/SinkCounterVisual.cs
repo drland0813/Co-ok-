@@ -23,8 +23,20 @@ namespace Drland.Cook
         {
             base.OnEnable();
             var sinkCounter = _platesCounter as SinkCounter;
-            if (sinkCounter != null) sinkCounter.OnDirtyPlateSpawned += OnDirtyPlateSpawned;
+            if (sinkCounter == null) return;
+            
+            sinkCounter.OnDirtyPlateSpawned += OnDirtyPlateSpawned;
+            sinkCounter.OnWashing += OnWashing;
         }
+
+        private void OnWashing(bool isWashing)
+        {
+            if (_dirtyPlateVisualObjectList.Count == 0) return;
+            
+            var plateIsWasted =  _dirtyPlateVisualObjectList[^1];
+            plateIsWasted.SetActive(!isWashing);
+        }
+
         private void OnDirtyPlateSpawned(object sender, SinkCounter.OnDirtyPlateSpawnedAgrs e)
         {
             for (var i = 0; i < e.TotalPlate; i++)

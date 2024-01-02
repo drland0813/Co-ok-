@@ -14,6 +14,8 @@ namespace Drland.Cook
         {
             public int TotalPlate;
         }
+
+        public Action<bool> OnWashing;
         
         [SerializeField] private float _washingProgressMax;
         [SerializeField] private float _washingProgress;
@@ -67,6 +69,7 @@ namespace Drland.Cook
             if (!player.IsHolding)
             {
                 _washingProgress = _washingProgress > _washingProgressMax ? 0 : _washingProgress;
+                OnWashing?.Invoke(false);
                 return;
             }
             StartCoroutine(WashingCoroutine(player));
@@ -76,6 +79,7 @@ namespace Drland.Cook
         {
             while (player.IsHolding && _washingProgress < _washingProgressMax)
             {
+                OnWashing?.Invoke(true);
                 _washingProgress += Time.deltaTime;
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
@@ -94,6 +98,7 @@ namespace Drland.Cook
                 }
                 yield return null;
             }
+            OnWashing?.Invoke(false);
         }
 
         public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
