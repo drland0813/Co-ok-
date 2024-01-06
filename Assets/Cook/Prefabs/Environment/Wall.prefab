@@ -28,6 +28,11 @@ PrefabInstance:
       propertyPath: m_Center.y
       value: 2.4
       objectReference: {fileID: 0}
+    - target: {fileID: 2628872337499028140, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3049550121579107496, guid: 06cdbb9a840a1d444abc8642df3eae9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616565534184199699, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -180,6 +190,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wall
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b32fefebc3c4ce647928137faa31c051,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: b32fefebc3c4ce647928137faa31c051,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

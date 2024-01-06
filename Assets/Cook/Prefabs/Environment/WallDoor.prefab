@@ -83,6 +83,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: wall_doorway
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f4c8880cf9cf7d641bf77636dbc35c6d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -154,6 +159,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2628872337499028140, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3049550121579107496, guid: 06cdbb9a840a1d444abc8642df3eae9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -208,6 +218,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallDoor
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616565534184199699, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2271819315498879628, guid: 06cdbb9a840a1d444abc8642df3eae9d, type: 3}
@@ -311,6 +326,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: door_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b56eaa2e6477a24e91e9f7b93228df6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

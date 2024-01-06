@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8983130817259143405
 Transform:
@@ -100,6 +100,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: counter_closed
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 09d4d20d8945d2447914a9bca048d8f1,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -190,20 +195,55 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8623595607743956452, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -6606561551239210829, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -5710445045284153195, guid: 40aadfff2f099a949855ab1cf9c916d9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6e36bdc17bd581847b22819096dc933f, type: 2}
+    - target: {fileID: -5252614058741765545, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -4925890095203842434, guid: 40aadfff2f099a949855ab1cf9c916d9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6e36bdc17bd581847b22819096dc933f, type: 2}
+    - target: {fileID: -1586404518910753112, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -221839878033467304, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 40aadfff2f099a949855ab1cf9c916d9,
         type: 3}
       propertyPath: m_Name
       value: cash register
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 2274072535476121079, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 2459462330916613215, guid: 40aadfff2f099a949855ab1cf9c916d9,
         type: 3}
@@ -225,6 +265,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 6e36bdc17bd581847b22819096dc933f, type: 2}
+    - target: {fileID: 6012952027905507436, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6160078544582401792, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7326867329581963385, guid: 40aadfff2f099a949855ab1cf9c916d9,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 8199054216487349595, guid: 40aadfff2f099a949855ab1cf9c916d9,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -254,6 +309,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 551595213641462408, guid: bd7711cf04864684f808153a57d51a5c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2871667357964198539, guid: bd7711cf04864684f808153a57d51a5c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -308,6 +368,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CashCounter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6074702746973915008, guid: bd7711cf04864684f808153a57d51a5c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 7606957389497129348, guid: bd7711cf04864684f808153a57d51a5c,
         type: 3}

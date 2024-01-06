@@ -28,6 +28,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2628872337499028140, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3049550121579107496, guid: 06cdbb9a840a1d444abc8642df3eae9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -82,6 +87,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WallOrder
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616565534184199699, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2271819315498879628, guid: 06cdbb9a840a1d444abc8642df3eae9d, type: 3}
@@ -161,6 +171,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: wall_orderwindow_decorated
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f1c6a7b02e33259468302728f6dfb0c8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

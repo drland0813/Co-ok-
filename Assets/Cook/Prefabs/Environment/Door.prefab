@@ -8,6 +8,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2628872337499028140, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3049550121579107496, guid: 06cdbb9a840a1d444abc8642df3eae9d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -62,6 +67,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 3616565534184199699, guid: 06cdbb9a840a1d444abc8642df3eae9d,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -145,6 +155,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: door_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0b56eaa2e6477a24e91e9f7b93228df6,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

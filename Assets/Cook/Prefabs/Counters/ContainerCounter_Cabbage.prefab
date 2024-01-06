@@ -36,6 +36,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: dedc237973da27945b815375b718e52f,
         type: 2}
+    - target: {fileID: 2851231099702670072, guid: 493854ab19154bb499ce441d98adb068,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 3231978389650974786, guid: 493854ab19154bb499ce441d98adb068,
         type: 3}
       propertyPath: m_LocalScale.z
@@ -111,10 +116,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5696018622863968412, guid: 493854ab19154bb499ce441d98adb068,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 6621352962351962448, guid: 493854ab19154bb499ce441d98adb068,
         type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8384385782743032637, guid: 493854ab19154bb499ce441d98adb068,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
@@ -222,6 +237,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cabbage_Visual (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -310,6 +335,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Cabbage_Visual
+      objectReference: {fileID: 0}
+    - target: {fileID: 3812876574508226177, guid: 259702638197d9246bfc6f2b0fe88c09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6979682845569653684, guid: 259702638197d9246bfc6f2b0fe88c09,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
