@@ -28,13 +28,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cc97c340134faa948bcaf20fea6429c6, type: 3}
   - {fileID: 8300000, guid: 64a04bb4fa4ed5d4eac6b0a31f91843a, type: 3}
   ObjectDrop:
-  - {fileID: 8300000, guid: 9c88983fa5906dc41944ec5a43b6b5c7, type: 3}
   - {fileID: 8300000, guid: 331b82ab2c0e2b74d805124d11372c85, type: 3}
-  - {fileID: 8300000, guid: 961379cce253f794abff0d24df806b68, type: 3}
   ObjectPickup:
   - {fileID: 8300000, guid: 668de61a04ca5914aa745f8712c62720, type: 3}
-  - {fileID: 8300000, guid: 6728bf8b07482414e99ba965fdd022d8, type: 3}
-  - {fileID: 8300000, guid: 32d29abc86751884081d2005f9ff2676, type: 3}
   StoveSizzle:
   - {fileID: 8300000, guid: 511c1cbfb8b48b64083aec78fe17115f, type: 3}
   Trash:
@@ -43,3 +39,6 @@ MonoBehaviour:
   Warning:
   - {fileID: 8300000, guid: b90d8099bdbf09a40ab1163556d5b5f4, type: 3}
   - {fileID: 8300000, guid: b59c98e0066c41f42b8100f5cb180f5b, type: 3}
+  Walking:
+  - {fileID: 8300000, guid: 0d022e4f5b405d742b4e7997c5992d6a, type: 3}
+  - {fileID: 8300000, guid: 78e2ce3c64e256742a7439d674f2c5d7, type: 3}

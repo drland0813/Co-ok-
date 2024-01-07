@@ -37,6 +37,10 @@ namespace Drland.Cook
 		[SerializeField] private RigActionManager _rigActionManager;
 		[SerializeField] private List<KitchenObjectHolder> _kitchenObjectHolderList;
 
+		[Header("Footstep")] 
+		[SerializeField] private float _footStepTimer;
+		[SerializeField] private float _footStepTimerMax;
+		
 		private bool _isWalking;
 		private Vector3 _lastInteractPosition;
 		private BaseCounter _selectedCounter;
@@ -84,6 +88,7 @@ namespace Drland.Cook
 			_isWalking = moveDir != Vector3.zero;
 			if (_isWalking)
 			{
+				PlayFootstepSound();
 				_isHolding = false;
 			}
 
@@ -187,6 +192,15 @@ namespace Drland.Cook
 			var type = _currentKitchenObject.GetKitchenObjectSO().Type;
 			var kitchenObjectHolder = _kitchenObjectHolderList.FirstOrDefault(k => k.Type == type);
 			return kitchenObjectHolder.Holder;
+		}
+
+		private void PlayFootstepSound()
+		{
+			_footStepTimer -= Time.deltaTime;
+			if (!(_footStepTimer < 0)) return;
+			
+			_footStepTimer = _footStepTimerMax;
+			SoundManager.Instance.PlaySound(SoundType.Walking, transform);
 		}
 		
 

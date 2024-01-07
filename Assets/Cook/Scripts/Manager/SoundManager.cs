@@ -13,7 +13,8 @@ namespace Drland.Cook
 		Chop,
 		StoveSizzle,
 		Trash,
-		Warning
+		Warning,
+		Walking
 	}
 
 	public class SoundManager : Singleton<SoundManager>
@@ -36,6 +37,7 @@ namespace Drland.Cook
 				{ SoundType.StoveSizzle, _audioClipRefSO.StoveSizzle},
 				{ SoundType.Trash, _audioClipRefSO.Trash},
 				{ SoundType.Warning, _audioClipRefSO.Warning},
+				{ SoundType.Walking, _audioClipRefSO.Walking}
 			};
 		}
 
