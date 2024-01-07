@@ -17,6 +17,11 @@ namespace Drland.Cook
 			}
 		}
 
+		public void SpawnDirtyPlate()
+		{
+			SpawnPlate();
+		}
+
 		public override void Interact(PlayerController player)
 		{
 			if (player.HasKitchenObject()) return;

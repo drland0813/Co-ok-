@@ -52,7 +52,7 @@ namespace Drland.Cook
 			}
 		}
 
-		public void DeliveryRecipe(PlateKitchenObject plateKitchenObject)
+		public bool GetDeliveryRecipeResult(PlateKitchenObject plateKitchenObject)
 		{
 			for (var i = 0; i < _waitingRecipeSOList.Count; i++)
 			{
@@ -74,9 +74,10 @@ namespace Drland.Cook
 				_waitingRecipeSOList.RemoveAt(i);
 				OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
 				SoundManager.Instance.PlaySound(SoundType.DeliverySuccess, transform);
-				return;
+				return true;
 			}
 			SoundManager.Instance.PlaySound(SoundType.DeliveryFail, transform);
+			return false;
 		}
 
 		public List<RecipeSO> GetWaitingRecipeSOList()

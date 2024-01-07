@@ -53,6 +53,7 @@ namespace Drland.Cook
 
 		public override void InteractAlternate(PlayerController player)
 		{
+			player.IsHolding = false;
 			var canInteractAlternate = HasKitchenObject() && HasRecipeWithInput(GetKitchenObject().GetKitchenObjectSO());
 			if (!canInteractAlternate) return;
 
