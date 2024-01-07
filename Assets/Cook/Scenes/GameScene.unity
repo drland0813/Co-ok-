@@ -3191,7 +3191,7 @@ PrefabInstance:
     - target: {fileID: 9069124262178390821, guid: d1c1832d76c7e204a9fa46e6fa8bc200,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3228,8 +3228,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _recipeListSO: {fileID: 11400000, guid: 3307cbd46e279094191a6b15c4bd0ed1, type: 2}
-  _spawnRecipeTimer: 3
-  _spawnRecipeTimerMax: 3
+  _spawnRecipeTimer: 5
+  _spawnRecipeTimerMax: 4
   _waitingRecipeMax: 3
 --- !u!4 &641359197
 Transform:
@@ -3292,7 +3292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _waitingToStartTimer: 1
   _countDownToStartTimer: 3
-  _gamePlayingTimerMax: 600
+  _gamePlayingTimerMax: 180
   _gamePlayingTimer: 0
 --- !u!4 &695705774 stripped
 Transform:
