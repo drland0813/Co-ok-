@@ -7,8 +7,6 @@ namespace Drland.Cook
 {
 	public class GameManager : Singleton<GameManager>
 	{
-		public event EventHandler OnStateChanged;
-
 		private enum GameState
 		{
 			WaitingToStart,
@@ -23,6 +21,9 @@ namespace Drland.Cook
 		[SerializeField] private float _gamePlayingTimerMax = 10f;
 
 		[SerializeField] private float _gamePlayingTimer;
+
+		[Header("Gameplay UI")]
+		[SerializeField] private GameplayUI _gameplayUI;
 
 		protected override void Awake()
 		{
@@ -39,24 +40,23 @@ namespace Drland.Cook
 					if (_waitingToStartTimer < 0f)
 					{
 						_gameState = GameState.CountDownToStart;
-						OnStateChanged?.Invoke(this, EventArgs.Empty);
 					}
 					break;
 				case GameState.CountDownToStart:
 					_countDownToStartTimer -= Time.deltaTime;
+					_gameplayUI.UpdateCountDownTimer(_countDownToStartTimer);
 					if (_countDownToStartTimer < 0f)
 					{
 						_gamePlayingTimer = _gamePlayingTimerMax;
 						_gameState = GameState.GamePlaying;
-						OnStateChanged?.Invoke(this, EventArgs.Empty);
 					}
 					break;
 				case GameState.GamePlaying:
 					_gamePlayingTimer -= Time.deltaTime;
+					_gameplayUI.UpdateClockCountDownTimer(GetGamePlayingTimerNormalized());
 					if (_gamePlayingTimer < 0f)
 					{
 						_gameState = GameState.GameOver;
-						OnStateChanged?.Invoke(this, EventArgs.Empty);
 					}
 					break;
 				case GameState.GameOver:
@@ -76,17 +76,7 @@ namespace Drland.Cook
 			return _gameState == GameState.GameOver;
 		}
 
-		public bool IsCountDownToStartActive()
-		{
-			return _gameState == GameState.CountDownToStart;
-		}
-
-		public float GetCountDownTimer()
-		{
-			return _countDownToStartTimer;
-		}
-
-		public float GetGamePlayingTimerNormalized()
+		private float GetGamePlayingTimerNormalized()
 		{
 			return _gamePlayingTimer / _gamePlayingTimerMax;
 		}

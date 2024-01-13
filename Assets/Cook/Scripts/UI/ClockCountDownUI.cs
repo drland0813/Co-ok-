@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Drland.Cook
 {
-	public class ClockCountDownUI : MonoBehaviour
+	public class ClockCountDownUI : MonoBehaviour, ICountDownable
 	{
 		[SerializeField] private Image _clockImg;
 
@@ -14,37 +14,58 @@ namespace Drland.Cook
 		[SerializeField] private Color _dangerTimeColor;
 
 		private Color _clockColor;
-
-		private void Awake()
+		private Color _tempClockColor;
+		private bool _flagToCheckTransition;
+		
+		public void UpdateTimer(float timer)
 		{
-			_clockColor = _clockImg.color;
-		}
-
-		private void Start()
-		{
-			StartCoroutine(OnStart());
-		}
-
-		private IEnumerator OnStart()
-		{
-			while (!GameManager.Instance.IsGameOver())
+			Color clockColor;
+			switch (timer)
 			{
-				if (GameManager.Instance.IsGamePlaying())
+				case < 0.5f and > 0.25f:
 				{
-					var timeRemain = GameManager.Instance.GetGamePlayingTimerNormalized();
-					_clockColor = timeRemain switch
+					if (_flagToCheckTransition)
 					{
-						< 0.5f and > 0.25f => _fasterTimeColor,
-						< 0.25f => _dangerTimeColor,
-						_ => _clockColor
-					};
+						_tempClockColor = _fasterTimeColor;
+						_flagToCheckTransition = false;
+					}
 
-					_clockColor.a = 1f;
-					_clockImg.color = _clockColor;
-					_clockImg.fillAmount = timeRemain;
+					clockColor = _tempClockColor;
+					break;
 				}
-				yield return null;
+				case < 0.25f:
+				{
+					if (!_flagToCheckTransition)
+					{
+						_tempClockColor = _dangerTimeColor;
+						_flagToCheckTransition = true;
+					}
+
+					clockColor = _tempClockColor;
+					break;
+				}
+				default:
+				{
+					if (!_flagToCheckTransition)
+					{
+						_tempClockColor = _safeTimeColor;
+						_flagToCheckTransition = true;
+					}
+					clockColor = _tempClockColor;
+					break;
+				}
 			}
+
+			ChangColor(clockColor);
+			_clockImg.fillAmount = timer;
+		}
+
+		private void ChangColor(Color color)
+		{
+			if (color == _clockColor) return;
+			
+			_clockColor = color;
+			_clockImg.color = _clockColor;
 		}
 	}
 }

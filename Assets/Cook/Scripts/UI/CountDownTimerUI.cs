@@ -1,38 +1,22 @@
 using System;
+using System.Collections;
+using System.Globalization;
 using TMPro;
 using UnityEngine;
 
 namespace Drland.Cook
 {
-	public class CountDownTimerUI : MonoBehaviour
+	public class CountDownTimerUI : MonoBehaviour, ICountDownable
 	{
 		[SerializeField] private TextMeshProUGUI _countDownText;
 
-		private void Start()
+		public void UpdateTimer(float timer)
 		{
-			GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
-		}
-
-		private void Update()
-		{
-			_countDownText.text = Mathf.Ceil(GameManager.Instance.GetCountDownTimer()).ToString();
-		}
-
-		private void GameManager_OnStateChanged(object sender, EventArgs e)
-		{
-			var isCountDownToStartActive = GameManager.Instance.IsCountDownToStartActive();
-			if (isCountDownToStartActive) Show();
-			else Hide();
-		}
-
-		private void Show()
-		{
-			gameObject.SetActive(true);
-		}
-
-		private void Hide()
-		{
-			gameObject.SetActive(false);
+			_countDownText.text = Mathf.Ceil(timer).ToString(CultureInfo.InvariantCulture);
+			if (timer < float.Epsilon)
+			{
+				gameObject.SetActive(false);
+			}
 		}
 	}
 }

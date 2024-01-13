@@ -9,25 +9,7 @@ namespace Drland.Cook
 	public class GameOverUI : UIController
 	{
 		[SerializeField] private TextMeshProUGUI _recipeDeliveredCountText;
-
-		private void Start()
-		{
-			GameManager.Instance.OnStateChanged += GameManager_OnStateChanged;
-			Hide();
-		}
-
-		private void GameManager_OnStateChanged(object sender, EventArgs e)
-		{
-			if (GameManager.Instance.IsGameOver())
-			{
-				Show();
-				SetRecipeDeliveredText();
-			}
-			else
-			{
-				Hide();
-			}
-		}
+		
 
 		private void SetRecipeDeliveredText()
 		{
@@ -36,7 +18,13 @@ namespace Drland.Cook
 
 		public override void Initialize()
 		{
-			throw new NotImplementedException();
+			
+		}
+
+		public override void Show()
+		{
+			base.Show();
+			SetRecipeDeliveredText();
 		}
 	}
 }
