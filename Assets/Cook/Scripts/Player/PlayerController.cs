@@ -133,7 +133,6 @@ namespace Drland.Cook
 			{
 				if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
 				{
-					_playerUI.EnableInteractButton(true);
 					if (baseCounter != _selectedCounter)
 					{
 						SetSelectedCounter(baseCounter);
@@ -141,13 +140,11 @@ namespace Drland.Cook
 				}
 				else
 				{
-					_playerUI.EnableInteractButton(false);
 					SetSelectedCounter(null);
 				}
 			}
 			else
 			{
-				_playerUI.EnableInteractButton(false);
 				SetSelectedCounter(null);
 			}
 		}

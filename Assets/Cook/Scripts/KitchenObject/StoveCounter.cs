@@ -63,7 +63,7 @@ namespace Drland.Cook
 						_fryingTimer += Time.deltaTime;
 						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 						{
-							ProgessNomarlized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
+							ProgressNormalized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
 						});
 
 						if (_fryingTimer > _fryingRecipeSO.FryingTimeMax)
@@ -85,7 +85,7 @@ namespace Drland.Cook
 						_burningTimer += Time.deltaTime;
 						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 						{
-							ProgessNomarlized = _burningTimer / _burningRecipeSO.BurningTimeMax
+							ProgressNormalized = _burningTimer / _burningRecipeSO.BurningTimeMax
 						});
 
 						if (_burningTimer > _burningRecipeSO.BurningTimeMax)
@@ -102,7 +102,7 @@ namespace Drland.Cook
 
 							OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 							{
-								ProgessNomarlized = 0f
+								ProgressNormalized = 0f
 							});
 						}
 					}
@@ -129,7 +129,7 @@ namespace Drland.Cook
 				});
 				OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 				{
-					ProgessNomarlized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
+					ProgressNormalized = (float)_fryingTimer / _fryingRecipeSO.FryingTimeMax
 				});
 			}
 			else
@@ -150,7 +150,7 @@ namespace Drland.Cook
 
 						OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 						{
-							ProgessNomarlized = 0f
+							ProgressNormalized = 0f
 						});
 					};
 				}
@@ -165,7 +165,7 @@ namespace Drland.Cook
 
 					OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 					{
-						ProgessNomarlized = 0f
+						ProgressNormalized = 0f
 					});
 				}
 			}

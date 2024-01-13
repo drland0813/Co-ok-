@@ -11,12 +11,12 @@ namespace Drland.Cook
 
 		private void Start()
 		{
-			_stoveCounter.OnStateChanged += StoveCounter_OnStateChanged;
+			_stoveCounter.OnStateChanged += OnStateChanged;
 		}
 
-		private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
+		private void OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
 		{
-			var playSound = e.State == StoveCounter.State.Frying || e.State == StoveCounter.State.Fried;
+			var playSound = e.State is StoveCounter.State.Frying or StoveCounter.State.Fried;
 			if (playSound) _audioSource.Play();
 			else _audioSource.Pause();
 		}

@@ -20,7 +20,7 @@ namespace Drland.Cook
 		protected void SpawnPlate()
 		{
 			_plateSpawnedAmount++;
-			OnPlateSpawned.Invoke(this, EventArgs.Empty);
+			OnPlateSpawned?.Invoke(this, EventArgs.Empty);
 		}
 
 		protected void RemovePlate()

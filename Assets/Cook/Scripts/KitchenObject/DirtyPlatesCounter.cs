@@ -6,6 +6,12 @@ using UnityEngine.Serialization;
 
 namespace Drland.Cook
 {
+	enum PlateCounterState
+	{
+		None,
+		HasOnePlate,
+		HasMoreThanOnePlate
+	}
 	public class DirtyPlatesCounter : PlatesCounter
 	{
 		[SerializeField] private KitchenObjectSO _dirtyPlateSO;
@@ -25,20 +31,32 @@ namespace Drland.Cook
 		public override void Interact(PlayerController player)
 		{
 			if (player.HasKitchenObject()) return;
-			switch (_plateSpawnedAmount)
+
+			PlateCounterState stateCounter;
+			if (_plateSpawnedAmount >= (int) PlateCounterState.HasMoreThanOnePlate)
 			{
-				case 0:
+				stateCounter = PlateCounterState.HasMoreThanOnePlate;
+			}
+			else
+			{
+				stateCounter = (PlateCounterState) _plateSpawnedAmount;
+			}
+			switch (stateCounter)
+			{
+				case PlateCounterState.None:
 					return;
-				case 1:
+				case PlateCounterState.HasOnePlate:
 					SpawnPlateToPlayer(player);
 					break;
-				default:
+				case PlateCounterState.HasMoreThanOnePlate:
 				{
 					var dirtyPlateStack = KitchenObject.SpawnKitchenObject(_dirtyPlateSO, player) as DirtyPlateStackKitchenObject;
 					if (dirtyPlateStack) dirtyPlateStack.InitStack(_plateSpawnedAmount);
 					RemovePlates(_plateSpawnedAmount);
 					break;
 				}
+				default:
+					throw new ArgumentOutOfRangeException();
 			}
 		}
 	}

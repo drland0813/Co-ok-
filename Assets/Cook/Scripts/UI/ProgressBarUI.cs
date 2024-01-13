@@ -23,8 +23,8 @@ namespace Drland.Cook
 
 		private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
 		{
-			_barImage.fillAmount = e.ProgessNomarlized;
-			var enableUI = e.ProgessNomarlized is > 0 and < 1;
+			_barImage.fillAmount = e.ProgressNormalized;
+			var enableUI = e.ProgressNormalized is > 0 and < 1;
 			EnableProgressBarUI(enableUI);
 		}
 

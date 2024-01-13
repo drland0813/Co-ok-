@@ -10,7 +10,7 @@ namespace Drland.Cook
 		public event EventHandler<OnProgressChangedEventArgs> OnProgressChanged;
 		public class OnProgressChangedEventArgs : EventArgs
 		{
-			public float ProgessNomarlized;
+			public float ProgressNormalized;
 		}
 	}
 }

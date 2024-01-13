@@ -28,15 +28,24 @@ namespace Drland.Cook
 		[SerializeField] private Image _interactAlternateButtonIcon;
 
 		[SerializeField] private List<UIAction> _uiActions;
-		public void EnableInteractButton(bool enable)
+
+		private Dictionary<PlayerActionType, Sprite> _spritesActionCache;
+
+		private void Awake()
 		{
-			// _interactButton.gameObject.SetActive(enable);
+			_spritesActionCache = new Dictionary<PlayerActionType, Sprite>();
+			foreach (var uiAction in _uiActions)
+			{
+				_spritesActionCache.Add(uiAction.Type, uiAction.Icon);
+			}
 		}
 
 		public void EnableInteractAlternateButton(bool enable, PlayerActionType type)
 		{
 			_interactAlternateButton.gameObject.SetActive(enable);
-			var sprite = _uiActions.FirstOrDefault(t => t.Type == type)?.Icon;
+			if (!enable) return;
+
+			var sprite = _spritesActionCache[type];
 			_interactAlternateButtonIcon.sprite = sprite;
 		}
 	}

@@ -12,10 +12,10 @@ namespace Drland.Cook
 
 		private void Start()
 		{
-			PlayerController.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
+			PlayerController.Instance.OnSelectedCounterChanged += SelectedCounterChangedVisual;
 		}
 
-		private void Player_OnSelectedCounterChanged(object sender, PlayerController.OnSelectedCounterChangedArgs e)
+		private void SelectedCounterChangedVisual(object sender, PlayerController.OnSelectedCounterChangedArgs e)
 		{
 			if (e.SelectedCounter == _clearCounter) Show();
 			else Hide();

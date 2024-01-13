@@ -83,7 +83,7 @@ namespace Drland.Cook
                 _washingProgress += Time.deltaTime;
                 OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
                 {
-                    ProgessNomarlized = _washingProgress / _washingProgressMax
+                    ProgressNormalized = _washingProgress / _washingProgressMax
                 });
                 if (_washingProgress > _washingProgressMax)
                 {

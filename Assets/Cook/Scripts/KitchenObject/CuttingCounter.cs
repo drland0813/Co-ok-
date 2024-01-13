@@ -27,7 +27,7 @@ namespace Drland.Cook
 
 				OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 				{
-					ProgessNomarlized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
+					ProgressNormalized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
 				});
 			}
 			else
@@ -44,7 +44,7 @@ namespace Drland.Cook
 				{
 					OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 					{
-						ProgessNomarlized = 0
+						ProgressNormalized = 0
 					});
 					GetKitchenObject().SetKitchenObjectParent(player);
 				}
@@ -63,7 +63,7 @@ namespace Drland.Cook
 			var cuttingRecipeSO = GetCuttingRecipeSOWithInput(GetKitchenObject().GetKitchenObjectSO());
 			OnProgressChanged?.Invoke(this, new IHasProgress.OnProgressChangedEventArgs
 			{
-				ProgessNomarlized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
+				ProgressNormalized = (float)_cuttingProgress / cuttingRecipeSO.CuttingProgressMax
 			});
 
 			if (_cuttingProgress < cuttingRecipeSO.CuttingProgressMax) return;
